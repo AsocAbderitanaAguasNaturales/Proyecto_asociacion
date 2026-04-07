@@ -1,0 +1,26 @@
+:root{
+    --color-primario:#2721EF;
+    --color-secundario:#C468ED;
+    --color-auxiliar:#688EED;
+    --color-hover:#9868ED;
+    --color-footer:#68B8ED;
+    --color-action:#6D68ED;
+    --color-fuente1:#000000;
+    --color-fuente2:#FFFFFF;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'TypeMachine',Arial, sans-serif;
+  }
+
+  @font-face {
+    font-family: 'TypeMachine';
+    src: url(../assets/fonts/TypeMachine.ttf);
+  }
+  
+  body {
+    background-color: #f5f5f5;
+  }

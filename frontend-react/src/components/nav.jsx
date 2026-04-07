@@ -3,7 +3,7 @@ function Nav(){
     return(
         <>
         <nav>
-            <ul class="nav-horizontal">
+            <ul className="nav-horizontal">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Noticias y Eventos</a></li>
                 <li><a href="#">Galería</a></li>

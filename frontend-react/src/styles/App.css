@@ -1,0 +1,44 @@
+/* HEADER */
+#header {
+  background-color: var(--color-primario);
+  color: var(--color-fuente2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+}
+
+/* NAV */
+nav {
+  background-color: var(--color-secundario);
+}
+
+.nav-horizontal {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.nav-horizontal li {
+  padding: 15px 20px;
+  transition: 0.3s;
+}
+
+.nav-horizontal a {
+  color: var(--color-fuente2);
+  text-decoration: none;
+}
+
+.nav-horizontal li:hover {
+  background-color: var(--color-hover);
+}
+
+/* FOOTER */
+footer {
+  background-color: var(--color-footer);
+  color: var(--color-fuente2);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
