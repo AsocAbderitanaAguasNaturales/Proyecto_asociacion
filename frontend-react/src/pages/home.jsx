@@ -1,21 +1,25 @@
-import Nav from '../components/nav.jsx'
-import Header from '../components/header.jsx'
-import Footer from '../components/footer.jsx'
-import Home from '../components/index.jsx'
+import Carrousel from '../components/carrousel'
+import '../styles/index.css'
 
+function Home() {
+  return (
+    <>
+      <Carrousel />
 
-function Landing() {
-    return (
-        <>
-        <Header></Header>
+      <main className="contenido">
+        <div className="texto">
+          <h2>Bienvenidos</h2>
+          <p>
+            Texto de la asociación explicando vuestra actividad.
+          </p>
+        </div>
 
-        <Nav></Nav>
+        <div className="imagen">
+          <img src="/src/assets/images/asoc_7.png" alt="Presentación de la asociación" />
+        </div>
+      </main>
+    </>
+  )
+}
 
-        <Home></Home>
-
-        <Footer></Footer>
-        </>
-    )
-  }
-  
-  export default Landing;
+export default Home

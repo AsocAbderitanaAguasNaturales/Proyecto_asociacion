@@ -1,15 +1,17 @@
+import { Link } from "react-router-dom";
+
 function Nav(){
 
     return(
         <>
         <nav>
             <ul className="nav-horizontal">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Noticias y Eventos</a></li>
-                <li><a href="#">Galería</a></li>
-                <li><a href="#">Quienes Somos</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Area Socios</a></li>
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/noticias">Noticias y Eventos</Link></li>
+            <li><Link to="#">Galería</Link></li>
+            <li><Link to="#">Quienes Somos</Link></li>
+            <li><Link to="#">Contacto</Link></li>
+            <li><Link to="#">Area Socios</Link></li>
             </ul>
         </nav>
         </>
