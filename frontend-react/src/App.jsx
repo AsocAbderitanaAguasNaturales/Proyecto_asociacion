@@ -8,7 +8,12 @@ import Footer from './components/footer'
 
 import Home from './pages/home'
 import Noticias from './pages/noticias'
+import Galeria from './pages/galeria'
+import QuienesSomos from './pages/quienes_somos'
+import Contacto from './pages/contacto'
+import Login from './pages/login'
 import NotFound from './pages/notFound'
+
 
 function App() {
   
@@ -20,11 +25,23 @@ function App() {
         <Nav></Nav>
 
         <Routes>
-          {/* Ruta principal */}
+          {/* Ruta Inicio */}
         <Route path="/" element={<Home />} />
 
-          {/* Ruta usuarios */}
+          {/* Ruta Noticias */}
           <Route path="/noticias" element={<Noticias />} />
+
+          {/* Ruta Galería*/ }
+          <Route path="/galeria" element={<Galeria/>}/>
+
+          {/* Ruta Quienes Somos */}
+          <Route path="/quienes_somos" element={<QuienesSomos/>}/>
+
+          {/* Ruta Contacto */}
+          <Route path="/contacto" element={<Contacto/>}/>
+
+          {/* Ruta Login */}
+          <Route path="/login" element={<Login/>}/>
 
           {/* Ruta 404 */}
           <Route path="*" element={<NotFound />} />

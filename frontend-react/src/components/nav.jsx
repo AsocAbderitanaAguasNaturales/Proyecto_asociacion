@@ -8,10 +8,10 @@ function Nav(){
             <ul className="nav-horizontal">
             <li><Link to="/">Inicio</Link></li>
             <li><Link to="/noticias">Noticias y Eventos</Link></li>
-            <li><Link to="#">Galería</Link></li>
-            <li><Link to="#">Quienes Somos</Link></li>
-            <li><Link to="#">Contacto</Link></li>
-            <li><Link to="#">Area Socios</Link></li>
+            <li><Link to="/galeria">Galería</Link></li>
+            <li><Link to="/quienes_somos">Quienes Somos</Link></li>
+            <li><Link to="/contacto">Contacto</Link></li>
+            <li><Link to="/login">Área Socios</Link></li>
             </ul>
         </nav>
         </>
