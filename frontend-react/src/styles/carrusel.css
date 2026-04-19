@@ -1,0 +1,26 @@
+/* ===== CAROUSEL ===== */
+.carousel {
+    max-height: 450px;
+    overflow: hidden;
+  }
+  
+  .carousel-inner img {
+    height: 450px;
+    object-fit: cover;
+    filter: brightness(0.8) contrast(1.1);
+  }
+  
+  /* indicadores */
+  .carousel-indicators button {
+    background-color: #52B788;
+  }
+  
+  /* flechas */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(1);
+  }
+
+  .carousel-item {
+    transition: transform 0.6s ease-in-out;
+  }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Nav(){
 
@@ -6,12 +6,12 @@ function Nav(){
         <>
         <nav>
             <ul className="nav-horizontal">
-            <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/noticias">Noticias y Eventos</Link></li>
-            <li><Link to="/galeria">Galería</Link></li>
-            <li><Link to="/quienes_somos">Quienes Somos</Link></li>
-            <li><Link to="/contacto">Contacto</Link></li>
-            <li><Link to="/login">Área Socios</Link></li>
+            <li><NavLink to="/">Inicio</NavLink></li>
+            <li><NavLink to="/noticias">Noticias y Eventos</NavLink></li>
+            <li><NavLink to="/galeria">Galería</NavLink></li>
+            <li><NavLink to="/quienes_somos">Quienes Somos</NavLink></li>
+            <li><NavLink to="/contacto">Contacto</NavLink></li>
+            <li><NavLink to="/login">Área Socios</NavLink></li>
             </ul>
         </nav>
         </>

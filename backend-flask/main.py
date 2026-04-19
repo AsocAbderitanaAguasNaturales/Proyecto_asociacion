@@ -8,6 +8,8 @@ CORS(app)
 
 db =BaseDatos()
 
+# <db password> -> %3Cdb_password%3E
+
 noticias_col = db.obtener_colecciones('Noticias')
 miembros_col = db.obtener_colecciones('Miembros')
 galeria_col = db.obtener_colecciones('Galeria')

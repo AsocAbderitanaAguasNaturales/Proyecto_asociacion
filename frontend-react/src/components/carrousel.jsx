@@ -1,6 +1,7 @@
 import imagen9 from '../assets/images/Asoc_13.jpg'
 import imagen10 from '../assets/images/Asoc_14.jpg'
 import imagen12 from '../assets/images/Asoc_15.jpg'
+import '../styles/carrusel.css'
 
 function Carrousel() {
     return (

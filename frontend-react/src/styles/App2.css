@@ -1,0 +1,180 @@
+/* ====== BASE ====== */
+body {
+    margin: 0;
+
+    color: #212529;
+    background: #f8f9fa;
+  }
+  
+  /* ====== HEADER ====== */
+  #header {
+    background: #184E77;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* parte izquierda logo + título */
+  #header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  
+  #header h1 {
+    font-size: 22px;
+    margin: 0;
+  }
+  
+  /* ===== NAV CONTAINER ===== */
+nav {
+    background: #184E77; /* header azul oscuro */
+    padding: 10px 20px;
+  }
+  
+  /* ===== LISTA HORIZONTAL ===== */
+  .nav-horizontal {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  /* ===== ITEMS ===== */
+  .nav-horizontal li {
+    margin: 0;
+  }
+  
+  /* ===== LINKS (react-router Link) ===== */
+  .nav-horizontal a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+  
+    padding: 10px 14px;
+    border-radius: 8px;
+  
+    transition: all 0.25s ease;
+  }
+  
+  /* ===== HOVER ===== */
+  .nav-horizontal a:hover {
+    background: #40916C; /* verde hover */
+    transform: translateY(-2px);
+  }
+  
+  /* ===== LINK ACTIVO (opcional con NavLink) ===== */
+  .nav-horizontal a.active {
+    background: #52B788;
+    color: #0b1f2a;
+  }
+
+  
+  /* ====== FOOTER ====== */
+  footer {
+    background: #2D6A4F;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 30px;
+    margin-top: 40px;
+  }
+  
+  /* izquierda */
+#Asoc{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+
+  #Asoc p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  #Asoc a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  #Asoc a:hover{
+    color: #74C0FC;
+  }
+  
+  /* derecha enlaces */
+  #redes{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    gap: 8px;
+    text-align: end;
+  }
+  
+  #redes a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+  
+  #redes a:hover {
+    color: #74C0FC;
+  }
+
+  #redes img{
+    width: 2%;
+  }
+
+  @media (max-width: 768px) {
+    #redes {
+      display:flex;
+      width: 100%;
+      text-align: center;
+      align-items: center;
+      
+    }
+    #Asoc {
+       
+        width: 100%;
+        align-items:center ;
+    }
+
+    #redes img{
+        width: 5%;
+    }
+
+    .nav-horizontal {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+    
+      .nav-horizontal a {
+        width: 100%;
+      }
+  
+    footer {
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+  }
