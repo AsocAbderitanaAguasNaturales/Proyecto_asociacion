@@ -1,0 +1,21 @@
+.noticias-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 30px;
+  
+    background: #eef7f5;
+    border-radius: 20px;
+  }
+  
+  /* Título  */
+  .noticias-container h1 {
+    font-size: 32px;
+    color: #1E6091;
+    margin-bottom: 30px;
+  }
+  
+  /* mensaje vacío */
+  .noticias-vacio {
+    color: #495057;
+    font-size: 16px;
+  }

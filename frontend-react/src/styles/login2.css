@@ -1,0 +1,133 @@
+/* ===== TÍTULO ===== */
+h1 {
+    text-align: center;
+    color: #1E6091;
+    margin-top: 30px;
+  }
+  
+  /* ===== CONTENEDOR PRINCIPAL ===== */
+  #contenedor-login {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+  
+    background: #eef7f5;
+    border-radius: 20px;
+  }
+  
+  /* ===== TARJETA LOGIN ===== */
+  #card-login {
+    border-left: 4px solid #52B788;
+  
+    background: #f8f9fa;
+    padding: 30px;
+  
+    border-radius: 20px;
+  
+    box-shadow: 
+      8px 8px 20px rgba(0,0,0,0.08),
+      -8px -8px 20px rgba(255,255,255,0.9);
+  
+    transition: all 0.3s ease;
+  }
+  
+  /* hover suave */
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      12px 12px 30px rgba(30,96,145,0.15),
+      -10px -10px 25px rgba(255,255,255,1);
+  }
+  
+  /* ===== FORMULARIO ===== */
+  #login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border:none;
+  }
+  
+  /* labels */
+  #login label {
+    color: #184E77;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+  /* inputs */
+  #login input[type="text"],
+  #login input[type="password"] {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    outline: none;
+    transition: 0.2s;
+  }
+  
+  #login input[type="text"]:focus,
+  #login input[type="password"]:focus {
+    border-color: #52B788;
+    box-shadow: 0 0 0 2px rgba(82,183,136,0.2);
+  }
+  
+  /* botones */
+  .botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  #login input[type="submit"],
+  #login input[type="reset"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  
+    background: #52B788;
+    color: white;
+    font-weight: bold;
+  
+    transition: 0.3s;
+  }
+  
+  #login input[type="reset"] {
+    background: #adb5bd;
+  }
+  
+  #login input[type="submit"]:hover {
+    background: #40916c;
+  }
+  
+  #login input[type="reset"]:hover {
+    background: #868e96;
+  }
+  
+  /* link registro */
+  #card-login a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #1E6091;
+    text-decoration: none;
+    font-weight: 600;
+    width:100px;
+    margin:0 auto;
+  
+  }
+  
+  #card-login a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    #contenedor-login {
+      padding: 15px;
+    }
+  
+    #card-login {
+      padding: 20px;
+    }
+  }

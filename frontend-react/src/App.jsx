@@ -24,7 +24,7 @@ function App() {
     <>
         <Header></Header>
 
-        <Nav></Nav>
+    
 
         <Routes>
           {/* Ruta Inicio */}

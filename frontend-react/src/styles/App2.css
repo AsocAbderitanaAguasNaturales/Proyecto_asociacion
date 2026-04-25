@@ -6,33 +6,82 @@ body {
     background: #f8f9fa;
   }
   
-  /* ====== HEADER ====== */
   #header {
     background: #184E77;
     color: white;
-    padding: 15px 30px;
+  
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+  
+    padding: 15px 30px;
   }
   
-  /* parte izquierda logo + título */
-  #header {
+  /* izquierda: logo + título */
+  .header-left {
     display: flex;
+    flex:1;
     align-items: center;
     gap: 15px;
   }
   
   .logo {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     object-fit: contain;
+    background-color: white;
+    border-radius: 50px;
+    padding:5px
   }
+
+  .logo:hover {
+    transform: scale(1.1);
+  }
+
   
   #header h1 {
-    font-size: 22px;
+    font-size: clamp(14px, 2vw, 22px);
     margin: 0;
+    color:white;
   }
+  
+  /* derecha: navbar */
+  .header-right {
+    display: flex;
+   
+    align-items: center;
+    flex:1;
+  }
+
+  /* ===== HAMBURGUESA ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  
+  /* animación a X */
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
   
   /* ===== NAV CONTAINER ===== */
 nav {
@@ -41,7 +90,8 @@ nav {
   }
   
   /* ===== LISTA HORIZONTAL ===== */
-  .nav-horizontal {
+/* contenedor nav */
+.nav-horizontal {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -50,47 +100,59 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap;
+  
+    position: relative;
   }
   
-  /* ===== ITEMS ===== */
-  .nav-horizontal li {
-    margin: 0;
-  }
-  
-  /* ===== LINKS (react-router Link) ===== */
+  /* links */
   .nav-horizontal a {
     display: inline-block;
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-  
     padding: 10px 14px;
+    text-decoration: none;
+    color: white;
+    font-size:15px;
+    font-weight: 500;
+    text-align: center;
     border-radius: 8px;
-  
-    transition: all 0.25s ease;
+    position: relative;
+    z-index: 2;
   }
   
-  /* ===== HOVER ===== */
-  .nav-horizontal a:hover {
-    background: #40916C; /* verde hover */
-    transform: translateY(-2px);
-  }
-  
-  /* ===== LINK ACTIVO (opcional con NavLink) ===== */
+  /* quitamos fondo activo viejo */
   .nav-horizontal a.active {
-    background: #52B788;
+    background: none;
     color: #0b1f2a;
   }
-
+  
+  /* indicador deslizante */
+  .nav-indicator {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    height: 40px;
+    background: #52B788;
+    border-radius: 8px;
+  
+    z-index: 1;
+  
+    /* 🔥 animación PRO */
+    transition: 
+      left 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  /* hover opcional */
+  .nav-horizontal a:hover {
+    color: #d8f3dc;
+  }
   
   /* ====== FOOTER ====== */
   footer {
     background: #2D6A4F;
     color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 25px 30px;
     margin-top: 40px;
   }
@@ -100,10 +162,12 @@ nav {
     flex:1;
     display: flex;
     flex-direction: column;
+    
+    text-align: center;
 }
 
   #Asoc p {
-    margin: 5px 0;
+    margin: 2px 0;
     font-size: 14px;
   }
 
@@ -124,7 +188,9 @@ nav {
     flex:1;
     flex-direction: column;
     gap: 8px;
-    text-align: end;
+    border-left:1px solid rgba(0, 0, 0, 0.15);
+    border-radius:5px;
+    text-align: center;
   }
   
   #redes a {
@@ -141,17 +207,95 @@ nav {
   #redes img{
     width: 2%;
   }
+  @media (max-width: 1010px) {
+   
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
 
+    
+    #header {
+        flex-wrap: wrap;
+        position:relative;
+        z-index: 1000;
+      }
+    
+      /* hamburguesa visible */
+      
+
+        .hamburger {
+          display: flex;
+        }
+      
+        /* 🔥 IMPORTANTE: oculto por defecto */
+        .header-right {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 30%;
+          margin-left:70%;
+          background: #184E77;
+          justify-content: center;
+          /* oculto correctamente */
+          transform: translateY(-20px);
+          opacity: 0;
+          pointer-events: none;
+      
+          transition: all 0.3s ease;
+          z-index: 1100;
+        }
+      
+        /* cuando está abierto */
+        .header-right.open {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+      
+        /* nav vertical */
+        .nav-horizontal {
+          flex-direction: column;
+          width: 100%;
+          
+
+        }
+
+
+      
+        .nav-horizontal a {
+          width: 100%;
+          text-align: center;
+          padding: 12px;
+          justify-content: center;
+         
+          
+        }
+
+        .nav-horizontal a.active {
+            background: #52B788;
+            color: #0b1f2a;
+            border-radius: 8px;
+          }
+      
+        /* ocultar indicador en móvil */
+        .nav-indicator {
+          display: none;
+        }
+
+  }
   @media (max-width: 768px) {
     #redes {
       display:flex;
       width: 100%;
       text-align: center;
       align-items: center;
-      
+      border-left:none;
+      margin-top: -10px;
     }
     #Asoc {
-       
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
         width: 100%;
         align-items:center ;
     }
@@ -160,15 +304,7 @@ nav {
         width: 5%;
     }
 
-    .nav-horizontal {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-      }
     
-      .nav-horizontal a {
-        width: 100%;
-      }
   
     footer {
       display: flex; 
@@ -177,4 +313,7 @@ nav {
       text-align: center;
       gap: 20px;
     }
-  }
+
+      }
+    
+  

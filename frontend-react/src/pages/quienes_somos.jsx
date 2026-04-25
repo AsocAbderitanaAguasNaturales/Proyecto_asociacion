@@ -1,4 +1,4 @@
-import "../styles/quienes_somos.css";
+import "../styles/quienes_somos2.css";
 import fichaInscripcion from '../assets/documents/ficha_inscripción.pdf'
 
 function QuienesSomos() {

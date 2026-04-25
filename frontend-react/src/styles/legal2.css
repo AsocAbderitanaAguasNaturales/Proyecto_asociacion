@@ -1,0 +1,67 @@
+/* ===== TÍTULO ===== */
+h1 {
+    text-align: center;
+    color: #1E6091;
+    margin-top: 30px;
+  }
+  
+  /* ===== CONTENEDOR PRINCIPAL ===== */
+  #legal-contenedor {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+  
+    background: #eef7f5;
+    border-radius: 20px;
+  }
+  
+  /* ===== TARJETA ÚNICA ===== */
+  #card-legal {
+    border-left: 4px solid #52B788;
+  
+    background: #f8f9fa;
+    padding: 30px;
+  
+    border-radius: 20px;
+  
+    box-shadow: 
+      8px 8px 20px rgba(0,0,0,0.08),
+      -8px -8px 20px rgba(255,255,255,0.9);
+  
+    transition: all 0.3s ease;
+  }
+  
+  /* hover suave */
+  #card-legal:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      12px 12px 30px rgba(30,96,145,0.15),
+      -10px -10px 25px rgba(255,255,255,1);
+  }
+  
+  /* texto */
+  #card-legal p {
+    color: #495057;
+    line-height: 1.7;
+    margin-bottom: 15px;
+  }
+  
+  /* último párrafo sin margen extra */
+  #card-legal p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* responsive */
+  @media (max-width: 768px) {
+    #legal-contenedor {
+      padding: 15px;
+    }
+  
+    #card-legal {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 26px;
+    }
+  }

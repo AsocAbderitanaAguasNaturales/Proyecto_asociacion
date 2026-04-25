@@ -1,0 +1,35 @@
+.galeria-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 30px;
+  
+    background: #eef7f5;
+    border-radius: 20px;
+  }
+  
+  .galeria-container h1 {
+    font-size: 32px;
+    color: #1E6091;
+    margin-bottom: 30px;
+  }
+  
+  /* GRID */
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  /* tablet */
+@media (max-width: 900px) {
+    .galeria {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* móvil */
+  @media (max-width: 600px) {
+    .galeria {
+      grid-template-columns: 1fr;
+    }
+  }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Carta_foto from "../components/carta_foto";
-import "../styles/galeria.css";
+import "../styles/galeria2.css";
 
 function Galeria() {
   const [fotos, setFotos] = useState([]);
@@ -15,7 +15,7 @@ function Galeria() {
   }, []);
 
   return (
-    <div>
+    <div className="galeria-container">
       <h1>Galería</h1>
 
       {fotos.length === 0 ? (

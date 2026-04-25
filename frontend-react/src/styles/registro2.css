@@ -1,0 +1,131 @@
+/* ===== TÍTULO ===== */
+h1 {
+    text-align: center;
+    color: #1E6091;
+    margin-top: 30px;
+  }
+  
+  /* ===== CONTENEDOR PRINCIPAL ===== */
+  #contenedor-registro {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+  
+    background: #eef7f5;
+    border-radius: 20px;
+  }
+  
+  /* ===== TARJETA ===== */
+  .card-registro {
+    border-left: 4px solid #52B788;
+  
+    background: #f8f9fa;
+    padding: 30px;
+  
+    border-radius: 20px;
+  
+    box-shadow: 
+      8px 8px 20px rgba(0,0,0,0.08),
+      -8px -8px 20px rgba(255,255,255,0.9);
+  
+    transition: all 0.3s ease;
+  }
+  
+  .card-registro:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      12px 12px 30px rgba(30,96,145,0.15),
+      -10px -10px 25px rgba(255,255,255,1);
+  }
+  
+  /* ===== FORMULARIO ===== */
+  #registro {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* grupos de inputs */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* labels */
+  .form-group label {
+    color: #184E77;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  /* inputs */
+  .form-group input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    outline: none;
+    transition: 0.2s;
+  }
+  
+  .form-group input:focus {
+    border-color: #52B788;
+    box-shadow: 0 0 0 2px rgba(82,183,136,0.2);
+  }
+  
+  /* ===== BOTONES ===== */
+  .botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .botones input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  
+    background: #52B788;
+    color: white;
+    font-weight: bold;
+  
+    transition: 0.3s;
+  }
+  
+  .botones input[type="reset"] {
+    background: #adb5bd;
+  }
+  
+  .botones input[type="submit"]:hover {
+    background: #40916c;
+  }
+  
+  .botones input[type="reset"]:hover {
+    background: #868e96;
+  }
+  
+  /* link inferior */
+  .card-registro a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #1E6091;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .card-registro a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    #contenedor-registro {
+      padding: 15px;
+    }
+  
+    .card-registro {
+      padding: 20px;
+    }
+  }

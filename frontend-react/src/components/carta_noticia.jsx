@@ -1,4 +1,4 @@
-import '../styles/carta_noticia.css'
+import '../styles/carta_noticia2.css'
 
 function Carta_noticia({ titulo, descripcion, imagen }) {
     return (

@@ -1,4 +1,4 @@
-import '../styles/carta_foto.css'
+import '../styles/carta_foto2.css'
 
 function Carta_foto({imagen,titulo}){
     return(

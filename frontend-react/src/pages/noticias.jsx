@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Carta_noticia from "../components/carta_noticia";
-
+import '../styles/noticias.css';
 
 function Noticias() {
   const [noticias, setNoticias] = useState([]);
