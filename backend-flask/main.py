@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session,redirect,url_for,flash
 from models.database import BaseDatos
 from flask_cors import CORS
 from passlib.hash import pbkdf2_sha256
@@ -45,9 +45,42 @@ def get_fotos():
 
     
 
-@app.route('/api/login')
+@app.route('/api/login', methods=['POST'])
 def login():
-    return  ['Apple','Banana','Cherry']
+    data = request.get_json()
+
+    username = data.get('username')
+    password = data.get('password')
+
+    usuarios = db.lista_miembros(miembros_col)
+
+    login_user = None
+
+    for usuario in usuarios:
+        if usuario['username'] == username:
+            login_user = usuario
+            break
+
+    
+        # Validar si existe el usuario y la contraseña
+
+        if login_user and pbkdf2_sha256.verify(password, login_user['password']):
+            
+            session['username'] = login_user['username']
+            session['rol'] = login_user['rol']
+            session['dni'] = login_user.get('dni')
+
+            return jsonify({
+                "success": True,
+                "rol": login_user['rol']
+            })
+            
+    return({
+        "success": False,
+        "message":"Credenciales incorrectas"
+    }),401
+
+    return  jsonify()
     
 
 if __name__ ==  '__main__':
