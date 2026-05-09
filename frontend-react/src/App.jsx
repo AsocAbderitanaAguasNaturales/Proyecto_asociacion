@@ -20,9 +20,9 @@ import NotFound from './pages/notFound'
 import Admin from './pages/admin'
 import Miembro from './pages/miembro'
 
-import Gestionar_miembros from './pages/Panel_control/gestionar_miembros'
-import Gestionar_galeria from './pages/Panel_control/gestionar_galeria'
-import Gestionar_noticias from './pages/Panel_control/gestionar_noticias'
+import Gestionar_miembros from './pages/panel_control/gestionar_miembros'
+import Gestionar_galeria from './pages/panel_control/gestionar_galeria'
+import Gestionar_noticias from './pages/panel_control/gestionar_noticias'
 
 
 function App() {
