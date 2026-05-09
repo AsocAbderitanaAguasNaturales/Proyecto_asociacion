@@ -1,6 +1,3 @@
-import imagen9 from '../assets/images/Asoc_13.jpg'
-import imagen10 from '../assets/images/Asoc_14.jpg'
-import imagen12 from '../assets/images/Asoc_15.jpg'
 import '../styles/carrusel.css'
 
 function Carrousel() {
@@ -15,15 +12,15 @@ function Carrousel() {
 
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img className="d-block w-100" src={imagen9} alt="slide 1"  />
+                    <img className="d-block w-100" src="/images/Asoc_13.jpg" alt="slide 1"  />
                 </div>
 
                 <div className="carousel-item">
-                    <img className="d-block w-100" src={imagen10} alt="slide 2" />
+                    <img className="d-block w-100" src="/images/Asoc_14.jpg" alt="slide 2" />
                 </div>
 
                 <div className="carousel-item">
-                    <img className="d-block w-100" src={imagen12} alt="slide 3" />
+                    <img className="d-block w-100" src="/images/Asoc_15.jpg" alt="slide 3" />
                 </div>
             </div>
 
