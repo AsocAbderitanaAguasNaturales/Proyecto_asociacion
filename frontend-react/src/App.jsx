@@ -27,7 +27,7 @@ import Gestionar_noticias from './pages/Panel_control/gestionar_noticias'
 
 function App() {
   useEffect(() => {
-    fetch("http://localhost:5000/api/session", {
+    fetch(import.meta.env.VITE_API_URL + "/api/session", {
       credentials: "include"
     })
       .then(res => res.json())

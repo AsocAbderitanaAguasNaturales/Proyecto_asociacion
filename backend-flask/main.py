@@ -1,20 +1,27 @@
+# pyrefly: ignore [missing-import]
 from flask import Flask, jsonify, request, session,redirect,url_for,flash
 from models.database import BaseDatos
 from flask_cors import CORS
 from passlib.hash import pbkdf2_sha256
 import re
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 app = Flask(__name__)
 
-app.secret_key = "clave_super_secreta"
+app.secret_key = os.environ.get("SECRET_KEY", "clave_super_secreta")
 
+frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 CORS(app,
      supports_credentials=True,
-     origins=["http://localhost:5173"])
+     origins=[frontend_url, "http://localhost:5173"])
 
-
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['SESSION_COOKIE_SECURE'] = False  # en local
+is_production = os.environ.get("FLASK_ENV") == "production"
+app.config['SESSION_COOKIE_SAMESITE'] = 'None' if is_production else 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = is_production
 
 db =BaseDatos()
 

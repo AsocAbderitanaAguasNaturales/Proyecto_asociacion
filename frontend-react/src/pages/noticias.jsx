@@ -6,7 +6,7 @@ function Noticias() {
   const [noticias, setNoticias] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/noticias")
+    fetch(import.meta.env.VITE_API_URL + "/api/noticias")
       .then(res => res.json())
       .then(data => {
         

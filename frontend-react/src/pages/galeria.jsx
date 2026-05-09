@@ -6,7 +6,7 @@ function Galeria() {
   const [fotos, setFotos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/galeria")
+    fetch(import.meta.env.VITE_API_URL + "/api/galeria")
       .then(res => res.json())
       .then(data => {
         setFotos(data);

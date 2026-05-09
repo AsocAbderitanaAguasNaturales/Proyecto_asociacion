@@ -40,7 +40,7 @@ function Registro() {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/api/registro", {
+            const res = await fetch(import.meta.env.VITE_API_URL + "/api/registro", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
