@@ -1,0 +1,49 @@
+import { useEffect, useState } from "react";
+
+function Comentarios() {
+    const [comentarios, setComentarios] = useState([]);
+    const [cargando, setCargando] = useState(true);
+
+    useEffect(() => {
+        fetch(import.meta.env.VITE_API_URL + "/api/comentarios")
+            .then(res => res.json())
+            .then(data => {
+                setComentarios(data);
+                setCargando(false);
+            })
+            .catch(() => setCargando(false));
+    }, []);
+
+    return (
+        <>
+            <h1>Comentarios</h1>
+
+            {cargando && <p>Cargando comentarios...</p>}
+
+            {!cargando && comentarios.length === 0 && (
+                <p>Aún no hay comentarios.</p>
+            )}
+
+            {!cargando && comentarios.length > 0 && (
+                <table id="tabla-comentarios">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Comentario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {comentarios.map((c, index) => (
+                            <tr key={index}>
+                                <td>{c.username}</td>
+                                <td>{c.comentario}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
+        </>
+    );
+}
+
+export default Comentarios;

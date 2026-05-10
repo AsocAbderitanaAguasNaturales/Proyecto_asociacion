@@ -179,6 +179,31 @@ def logout():
     return jsonify({"success": True, "message": "Sesión cerrada correctamente"})
 
 
+@app.route('/api/comentarios', methods=['POST'])
+def guardar_comentario():
+    if 'username' not in session:
+        return jsonify({"success": False, "message": "No autenticado"}), 401
+
+    data = request.get_json()
+    comentario = data.get('comentario', '').strip()
+
+    if not comentario:
+        return jsonify({"success": False, "message": "El comentario no puede estar vacío"}), 400
+
+    comentarios_col.insert_one({
+        "username": session['username'],
+        "comentario": comentario
+    })
+
+    return jsonify({"success": True, "message": "Comentario guardado correctamente"}), 201
+
+
+@app.route('/api/comentarios', methods=['GET'])
+def obtener_comentarios():
+    datos = list(comentarios_col.find({}, {'_id': 0}))
+    return jsonify(datos)
+
+
 @app.route('/api/session', methods=['GET'])
 def session_check():
     if 'username' in session:

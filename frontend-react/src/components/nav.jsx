@@ -38,6 +38,12 @@ function Nav() {
         </li>
 
         <li>
+          <NavLink to="/comentarios" className={({ isActive }) => isActive ? "active" : ""}>
+            Comentarios
+          </NavLink>
+        </li>
+
+        <li>
           <NavLink to="/galeria" className={({ isActive }) => isActive ? "active" : ""}>
             Galería
           </NavLink>
