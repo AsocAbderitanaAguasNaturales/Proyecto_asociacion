@@ -86,8 +86,8 @@ function Miembro() {
                             <textarea
                                 name="comentario"
                                 id="comentario"
-                                cols="30"
-                                rows="10"
+                                cols="60"
+                                rows="5"
                                 value={comentario}
                                 onChange={(e) => setComentario(e.target.value)}
                             ></textarea><br />

@@ -151,7 +151,7 @@ h1 {
 }
 
 /* ===== BOTON ENVIAR ===== */
-#form-comentario input[type="submit"] {
+.tarjeta-miembro input[type="submit"] {
     margin-top: 20px;
     align-self: flex-start;
 
@@ -175,7 +175,7 @@ h1 {
     transition: all 0.25s ease;
 }
 
-#form-comentario input[type="submit"]:hover {
+.tarjeta-miembro input[type="submit"]:hover {
     transform: translateY(-2px);
 
     box-shadow:

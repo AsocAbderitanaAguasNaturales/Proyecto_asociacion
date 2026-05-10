@@ -22,6 +22,9 @@ import Admin from './pages/admin'
 import Miembro from './pages/miembro'
 
 import Gestionar_miembros from './pages/panel_control/gestionar_miembros'
+import Nuevo_miembro from './pages/panel_control/nuevo_miembro'
+import Modificar_miembro from './pages/panel_control/modificar_miembro'
+
 import Gestionar_galeria from './pages/panel_control/gestionar_galeria'
 import Gestionar_noticias from './pages/panel_control/gestionar_noticias'
 
@@ -88,14 +91,31 @@ function App() {
           </RutaProtegida>}
         />
 
-        {/* Ruta Gestionar miembros */}
-        <Route path="/admin/gestionar_miembros" element={<Gestionar_miembros />} />
+        {/* Gestionar miembros */}
+        <Route path="/admin/gestionar_miembros" element={
+          <RutaProtegida rolRequerido="admin">
+            <Gestionar_miembros />
+          </RutaProtegida>
+        } />
 
-        {/* Ruta Gestionar galería */}
-        <Route path="/admin/gestionar_galeria" element={<Gestionar_galeria />} />
 
-        {/* Ruta Gestionar noticias */}
-        <Route path="/admin/gestionar_noticias" element={<Gestionar_noticias />} />
+        {/* Ruta Crear miembro */}
+        <Route path="/admin/gestionar_miembros/nuevo" element={
+          <RutaProtegida rolRequerido="admin">
+            <Nuevo_miembro />
+          </RutaProtegida>
+        } />
+
+        {/* Ruta Modificar miembro */}
+        <Route path="/admin/gestionar_miembros/:dni" element={
+          <RutaProtegida rolRequerido="admin">
+            <Modificar_miembro />
+          </RutaProtegida>
+        } />
+
+
+
+
 
         {/* Ruta 404 */}
         <Route path="*" element={<NotFound />} />

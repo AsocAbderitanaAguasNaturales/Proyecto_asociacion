@@ -212,6 +212,68 @@ def obtener_miembros():
     return jsonify(datos)
 
 
+@app.route('/api/admin/miembros/nuevo', methods=['POST'])
+def crear_miembro_admin():
+    if session.get('rol') != 'admin':
+        return jsonify({"success": False, "message": "Acceso denegado"}), 403
+
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "JSON inválido"}), 400
+
+    passwd = data.get('password')
+    if not passwd:
+        return jsonify({"error": "Password requerido"}), 400
+
+    password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$'
+    if not re.match(password_regex, passwd):
+        return jsonify({"error": "La contraseña debe tener entre 8 y 15 caracteres, incluir mayúsculas, minúsculas y números"}), 400
+
+    email = data.get('email', '')
+    email_regex = r'^[\w\.-]+@[\w\.-]+\.\w{2,}$'
+    if not re.match(email_regex, email):
+        return jsonify({"error": "Formato de email inválido"}), 400
+
+    username = data.get('username')
+    nombre = data.get('nombre')
+    apellidos = data.get('apellidos')
+    dni = data.get('dni')
+    telefono = data.get('telefono')
+    rol = data.get('rol', 'miembro')
+
+    if rol not in ['admin', 'miembro']:
+        return jsonify({"error": "Rol inválido"}), 400
+
+    if not all([username, nombre, apellidos, dni, telefono, email]):
+        return jsonify({"error": "Faltan campos obligatorios"}), 400
+
+    passwd_hash = pbkdf2_sha256.hash(passwd)
+
+    dict_usuario = {
+        'username': username.lower(),
+        'password': passwd_hash,
+        'nombre': nombre.title(),
+        'apellidos': apellidos.title(),
+        'dni': dni.upper(),
+        'telefono': telefono,
+        'email': email.lower(),
+        'rol': rol
+    }
+
+    if miembros_col.find_one({'dni': dict_usuario['dni']}):
+        return jsonify({"error": "Ya existe un usuario con ese DNI"}), 400
+    if miembros_col.find_one({'telefono': dict_usuario['telefono']}):
+        return jsonify({"error": "Ya existe un usuario con ese teléfono"}), 400
+    if miembros_col.find_one({'email': dict_usuario['email']}):
+        return jsonify({"error": "Ya existe un usuario con ese email"}), 400
+    if miembros_col.find_one({'username': dict_usuario['username']}):
+        return jsonify({"error": "Ya existe un usuario con ese username"}), 400
+
+    miembros_col.insert_one(dict_usuario)
+    return jsonify({"mensaje": "Miembro creado correctamente"}), 201
+
+
+
 @app.route('/api/miembros/<dni>', methods=['DELETE'])
 def eliminar_miembro(dni):
     if session.get('rol') != 'admin':

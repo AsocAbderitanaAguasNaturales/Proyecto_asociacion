@@ -102,7 +102,10 @@ function Gestionar_miembros() {
                         </tbody>
                     </table>
                 </div>
+
             )}
+
+            <button className="btn-nuevo" onClick={() => navigate("/admin/gestionar_miembros/nuevo")}>Añadir miembro</button>
 
             {/* Modal de confirmación */}
             {confirmarDni && (

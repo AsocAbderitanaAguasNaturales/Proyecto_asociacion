@@ -130,3 +130,45 @@ h1 {
       padding: 20px;
     }
   }
+
+  /* ===== SELECT ROL ===== */
+  #select-rol {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    outline: none;
+    background: white;
+    color: #184E77;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  #select-rol:focus {
+    border-color: #52B788;
+    box-shadow: 0 0 0 2px rgba(82, 183, 136, 0.2);
+  }
+
+  /* ===== BOTÓN VOLVER ===== */
+  #btn-volver {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 10px;
+
+    background: none;
+    border: 2px solid #1E6091;
+    border-radius: 10px;
+
+    color: #1E6091;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: 0.25s;
+  }
+
+  #btn-volver:hover {
+    background: #1E6091;
+    color: white;
+  }
