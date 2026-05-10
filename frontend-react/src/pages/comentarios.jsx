@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/comentarios.css";
 
 function Comentarios() {
     const [comentarios, setComentarios] = useState([]);
@@ -17,31 +18,34 @@ function Comentarios() {
     return (
         <>
             <h1>Comentarios</h1>
+            <div id="comentarios-container">
 
-            {cargando && <p>Cargando comentarios...</p>}
 
-            {!cargando && comentarios.length === 0 && (
-                <p>Aún no hay comentarios.</p>
-            )}
+                {cargando && <p className="mensaje">Cargando comentarios...</p>}
 
-            {!cargando && comentarios.length > 0 && (
-                <table id="tabla-comentarios">
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Comentario</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {comentarios.map((c, index) => (
-                            <tr key={index}>
-                                <td>{c.username}</td>
-                                <td>{c.comentario}</td>
+                {!cargando && comentarios.length === 0 && (
+                    <p className="mensaje">Aún no hay comentarios.</p>
+                )}
+
+                {!cargando && comentarios.length > 0 && (
+                    <table id="tabla-comentarios">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Comentario</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
+                        </thead>
+                        <tbody>
+                            {comentarios.map((c, index) => (
+                                <tr key={index}>
+                                    <td>{c.username}</td>
+                                    <td>{c.comentario}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+            </div>
         </>
     );
 }

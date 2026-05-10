@@ -1,0 +1,110 @@
+/* ===== CONTENEDOR GENERAL ===== */
+#comentarios-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 40px 30px;
+
+    background: #eef7f5;
+    border-radius: 20px;
+
+    box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.05),
+        -8px -8px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* ===== TITULO ===== */
+h1 {
+    text-align: center;
+    color: #1E6091;
+    margin-bottom: 30px;
+}
+
+/* ===== MENSAJES ===== */
+.mensaje {
+    text-align: center;
+    color: #495057;
+    background: #f8f9fa;
+
+    padding: 18px;
+    border-radius: 15px;
+
+    margin-top: 20px;
+
+    box-shadow:
+        inset 2px 2px 6px rgba(0, 0, 0, 0.05),
+        inset -2px -2px 6px rgba(255, 255, 255, 0.9);
+}
+
+/* ===== TABLA ===== */
+#tabla-comentarios {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background: #f8f9fa;
+    border-radius: 20px;
+
+    box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.08),
+        -8px -8px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* CABECERA */
+#tabla-comentarios thead {
+    background: linear-gradient(135deg, #1E6091, #52B788);
+}
+
+#tabla-comentarios th {
+    color: white;
+    padding: 18px;
+    text-align: left;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+/* FILAS */
+#tabla-comentarios td {
+    padding: 18px;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    line-height: 1.5;
+}
+
+/* EFECTO HOVER */
+#tabla-comentarios tbody tr {
+    transition: all 0.25s ease;
+}
+
+#tabla-comentarios tbody tr:hover {
+    background: #dff3ec;
+    transform: scale(1.01);
+}
+
+/* COLUMNA USUARIO */
+#tabla-comentarios td:first-child {
+    font-weight: bold;
+    color: #184E77;
+    width: 220px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    #comentarios-container {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    #tabla-comentarios th,
+    #tabla-comentarios td {
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    #tabla-comentarios td:first-child {
+        width: 140px;
+    }
+}

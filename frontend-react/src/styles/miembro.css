@@ -1,0 +1,243 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+#miembro-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 30px;
+
+    background: #eef7f5;
+    border-radius: 20px;
+
+    box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.05),
+        -8px -8px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* ===== TITULOS ===== */
+h1 {
+    text-align: center;
+    color: #1E6091;
+    margin-bottom: 10px;
+}
+
+#miembro-container h2 {
+    text-align: center;
+    color: #184E77;
+    margin-bottom: 35px;
+    font-weight: 500;
+}
+
+#miembro-container h3 {
+    color: #184E77;
+    margin-bottom: 20px;
+}
+
+/* ===== GRID TARJETAS ===== */
+#miembro-grid {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* ===== TARJETAS ===== */
+.tarjeta-miembro {
+    flex: 1;
+
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 20px;
+
+    border-left: 4px solid #52B788;
+
+    box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.08),
+        -8px -8px 20px rgba(255, 255, 255, 0.9);
+
+    transition: all 0.3s ease;
+}
+
+.tarjeta-miembro:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        12px 12px 30px rgba(30, 96, 145, 0.15),
+        -10px -10px 25px rgba(255, 255, 255, 1);
+}
+
+/* ===== DATOS ===== */
+.tarjeta-miembro p {
+    color: #495057;
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+
+.tarjeta-miembro p strong {
+    color: #184E77;
+}
+
+/* ===== BOTON LOGOUT ===== */
+#btn-logout-miembro {
+    display: block;
+    margin: 0 auto 35px auto;
+
+    background: linear-gradient(135deg, #1E6091, #184E77);
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 4px 12px rgba(0, 0, 0, 0.15),
+        -4px -4px 12px rgba(255, 255, 255, 0.7);
+
+    transition: all 0.25s ease;
+}
+
+#btn-logout-miembro:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #184E77, #1E6091);
+
+    box-shadow:
+        6px 6px 18px rgba(30, 96, 145, 0.25),
+        -6px -6px 18px rgba(255, 255, 255, 1);
+}
+
+/* ===== FORMULARIO ===== */
+#form-comentario {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-comentario label {
+    color: #184E77;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+#comentario {
+    resize: vertical;
+    min-height: 180px;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #eef7f5;
+    color: #495057;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    box-shadow:
+        inset 3px 3px 8px rgba(0, 0, 0, 0.08),
+        inset -3px -3px 8px rgba(255, 255, 255, 0.9);
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+#comentario:focus {
+    box-shadow:
+        inset 3px 3px 8px rgba(30, 96, 145, 0.12),
+        inset -3px -3px 8px rgba(255, 255, 255, 1),
+        0 0 0 3px rgba(82, 183, 136, 0.25);
+}
+
+/* ===== BOTON ENVIAR ===== */
+#form-comentario input[type="submit"] {
+    margin-top: 20px;
+    align-self: flex-start;
+
+    background: linear-gradient(135deg, #52B788, #40916C);
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 14px 28px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 4px 12px rgba(0, 0, 0, 0.12),
+        -4px -4px 12px rgba(255, 255, 255, 0.8);
+
+    transition: all 0.25s ease;
+}
+
+#form-comentario input[type="submit"]:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        6px 6px 18px rgba(82, 183, 136, 0.25),
+        -6px -6px 18px rgba(255, 255, 255, 1);
+}
+
+/* ===== MENSAJES ===== */
+.mensaje-comentario {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.mensaje-comentario.exito {
+    background: rgba(82, 183, 136, 0.15);
+    color: #2D6A4F;
+}
+
+.mensaje-comentario.error {
+    background: rgba(220, 53, 69, 0.12);
+    color: #B02A37;
+}
+
+/* ===== CARGANDO ===== */
+.cargando {
+    text-align: center;
+    margin-top: 40px;
+    color: #495057;
+    font-size: 18px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+
+    #miembro-grid {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    #miembro-container {
+        padding: 30px 20px;
+    }
+
+    #miembro-container h1 {
+        font-size: 28px;
+    }
+
+    #miembro-container h2 {
+        font-size: 20px;
+    }
+
+    .tarjeta-miembro {
+        padding: 24px;
+    }
+
+    #comentario {
+        min-height: 150px;
+    }
+
+}

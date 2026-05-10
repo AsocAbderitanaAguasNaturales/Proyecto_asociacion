@@ -64,37 +64,44 @@ function Miembro() {
     return (
         <>
             <h1>Area de miembros</h1>
-            <h2>Bienvenido {datos.username}</h2>
-            <button id="btn-logout-miembro" onClick={handleLogout}>
-                Cerrar sesión
-            </button>
-            <div>
-                <h3>Datos Personales</h3>
-                <p>Nombre: {datos.nombre}</p>
-                <p>Apellidos: {datos.apellidos}</p>
-                <p>DNI: {datos.dni}</p>
-                <p>Telefono: {datos.telefono}</p>
-                <p>Email: {datos.email}</p>
-            </div>
-            <div>
-                <h3>Comentarios y Sugerencias</h3>
-                <form onSubmit={handleComentario}>
-                    <label htmlFor="comentario">Comentario: </label><br />
-                    <textarea
-                        name="comentario"
-                        id="comentario"
-                        cols="30"
-                        rows="10"
-                        value={comentario}
-                        onChange={(e) => setComentario(e.target.value)}
-                    ></textarea><br />
-                    <input type="submit" value="Enviar" />
-                </form>
-                {mensajeComentario && (
-                    <p style={{ color: mensajeComentario.tipo === "exito" ? "green" : "red" }}>
-                        {mensajeComentario.texto}
-                    </p>
-                )}
+            <div id="miembro-container">
+                <h2>Bienvenido {datos.username}</h2>
+                <button id="btn-logout-miembro" onClick={handleLogout}>
+                    Cerrar sesión
+                </button>
+                <div id="miembro-grid">
+
+                    <div className="tarjeta-miembro">
+                        <h3>Datos Personales</h3>
+                        <p>Nombre: {datos.nombre}</p>
+                        <p>Apellidos: {datos.apellidos}</p>
+                        <p>DNI: {datos.dni}</p>
+                        <p>Telefono: {datos.telefono}</p>
+                        <p>Email: {datos.email}</p>
+                    </div>
+                    <div className="tarjeta-miembro" >
+                        <h3>Comentarios y Sugerencias</h3>
+                        <form onSubmit={handleComentario}>
+                            <label htmlFor="comentario">Comentario: </label><br />
+                            <textarea
+                                name="comentario"
+                                id="comentario"
+                                cols="30"
+                                rows="10"
+                                value={comentario}
+                                onChange={(e) => setComentario(e.target.value)}
+                            ></textarea><br />
+                            <input type="submit" value="Enviar" />
+                        </form>
+                        {mensajeComentario && (
+                            <p className={`mensaje-comentario ${mensajeComentario.tipo}`}>
+                                {mensajeComentario.texto}
+                            </p>
+                        )}
+                    </div>
+
+                </div>
+
             </div>
         </>
     );
