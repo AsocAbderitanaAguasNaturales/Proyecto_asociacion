@@ -204,7 +204,26 @@ def obtener_comentarios():
     return jsonify(datos)
 
 
+@app.route('/api/miembros', methods=['GET'])
+def obtener_miembros():
+    if session.get('rol') != 'admin':
+        return jsonify({"success": False, "message": "Acceso denegado"}), 403
+    datos = list(miembros_col.find({}, {'_id': 0, 'password': 0}))
+    return jsonify(datos)
+
+
+@app.route('/api/miembros/<dni>', methods=['DELETE'])
+def eliminar_miembro(dni):
+    if session.get('rol') != 'admin':
+        return jsonify({"success": False, "message": "Acceso denegado"}), 403
+    resultado = miembros_col.delete_one({'dni': dni.upper()})
+    if resultado.deleted_count == 0:
+        return jsonify({"success": False, "message": "Miembro no encontrado"}), 404
+    return jsonify({"success": True, "message": "Miembro eliminado correctamente"})
+
+
 @app.route('/api/session', methods=['GET'])
+
 def session_check():
     if 'username' in session:
         user = miembros_col.find_one({'username': session['username']}, {'_id': 0, 'password': 0})

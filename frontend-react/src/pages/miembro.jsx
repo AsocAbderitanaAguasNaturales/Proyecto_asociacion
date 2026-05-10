@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "../styles/miembro.css";
 function Miembro() {
     const [datos, setDatos] = useState(null);
     const [comentario, setComentario] = useState("");

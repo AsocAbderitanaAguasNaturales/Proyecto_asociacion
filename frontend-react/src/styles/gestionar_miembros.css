@@ -1,0 +1,239 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+#gm-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 30px;
+
+    background: #eef7f5;
+    border-radius: 20px;
+
+    box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.05),
+        -8px -8px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* ===== TÍTULO ===== */
+#gm-container h1 {
+    text-align: center;
+    color: #1E6091;
+    margin-bottom: 30px;
+}
+
+/* ===== MENSAJES ===== */
+.gm-mensaje {
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.gm-mensaje.exito {
+    background: rgba(82, 183, 136, 0.15);
+    color: #2D6A4F;
+}
+
+.gm-mensaje.error {
+    background: rgba(220, 53, 69, 0.12);
+    color: #B02A37;
+}
+
+.gm-cargando {
+    text-align: center;
+    color: #495057;
+    font-size: 17px;
+    margin-top: 30px;
+}
+
+/* ===== TABLA WRAPPER (scroll horizontal en móvil) ===== */
+#gm-tabla-wrapper {
+    overflow-x: auto;
+    border-radius: 20px;
+}
+
+/* ===== TABLA ===== */
+#tabla-miembros {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f8f9fa;
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.08),
+        -8px -8px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* CABECERA */
+#tabla-miembros thead {
+    background: linear-gradient(135deg, #1E6091, #52B788);
+}
+
+#tabla-miembros th {
+    color: white;
+    padding: 16px 18px;
+    text-align: left;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+/* FILAS */
+#tabla-miembros td {
+    padding: 14px 18px;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    white-space: nowrap;
+}
+
+#tabla-miembros tbody tr {
+    transition: background 0.2s ease;
+}
+
+#tabla-miembros tbody tr:hover {
+    background: #dff3ec;
+}
+
+/* ===== COLUMNA ACCIONES ===== */
+.gm-acciones {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ===== BOTÓN MODIFICAR (verde) ===== */
+.btn-modificar {
+    background: linear-gradient(135deg, #52B788, #40916C);
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        3px 3px 8px rgba(0, 0, 0, 0.12),
+        -3px -3px 8px rgba(255, 255, 255, 0.7);
+
+    transition: all 0.2s ease;
+}
+
+.btn-modificar:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        5px 5px 14px rgba(82, 183, 136, 0.3),
+        -4px -4px 12px rgba(255, 255, 255, 1);
+}
+
+/* ===== BOTÓN ELIMINAR (rojo) ===== */
+.btn-eliminar {
+    background: linear-gradient(135deg, #e63946, #b5202c);
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        3px 3px 8px rgba(0, 0, 0, 0.12),
+        -3px -3px 8px rgba(255, 255, 255, 0.7);
+
+    transition: all 0.2s ease;
+}
+
+.btn-eliminar:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        5px 5px 14px rgba(230, 57, 70, 0.3),
+        -4px -4px 12px rgba(255, 255, 255, 1);
+}
+
+/* ===== BOTÓN CANCELAR (gris) ===== */
+.btn-cancelar {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        3px 3px 8px rgba(0, 0, 0, 0.12),
+        -3px -3px 8px rgba(255, 255, 255, 0.7);
+
+    transition: all 0.2s ease;
+}
+
+.btn-cancelar:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== MODAL DE CONFIRMACIÓN ===== */
+#gm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+#gm-modal {
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 40px 35px;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+
+    box-shadow:
+        16px 16px 40px rgba(0, 0, 0, 0.15),
+        -10px -10px 30px rgba(255, 255, 255, 0.9);
+}
+
+#gm-modal p {
+    color: #184E77;
+    font-size: 17px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.gm-aviso {
+    color: #B02A37 !important;
+    font-size: 14px !important;
+    margin-bottom: 28px !important;
+}
+
+#gm-modal-botones {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    #gm-container {
+        padding: 25px 15px;
+    }
+
+    #tabla-miembros th,
+    #tabla-miembros td {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .gm-acciones {
+        flex-direction: column;
+        gap: 6px;
+    }
+}

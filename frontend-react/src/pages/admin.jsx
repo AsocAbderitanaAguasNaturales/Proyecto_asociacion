@@ -54,6 +54,10 @@ function Admin() {
                     <p>Noticias</p>
                     <Link to="/admin/gestionar_noticias">Gestionar</Link>
                 </div>
+                <div className="gestionar">
+                    <p>Comentarios</p>
+                    <Link to="/admin/gestionar_comentarios">Gestionar</Link>
+                </div>
             </div>
         </>
     );
