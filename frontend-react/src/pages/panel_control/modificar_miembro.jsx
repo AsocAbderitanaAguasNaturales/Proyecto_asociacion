@@ -14,7 +14,7 @@ function Modificar_miembro() {
 
     // Cargar datos del miembro al montar
     useEffect(() => {
-        fetch("/api/miembros/" + dni, {
+        fetch("/api/admin/miembros/" + dni, {
             credentials: "include"
         })
             .then(res => {
