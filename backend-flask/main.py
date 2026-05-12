@@ -1,10 +1,12 @@
 # pyrefly: ignore [missing-import]
-from flask import Flask, jsonify, request, session,redirect,url_for,flash
+from flask import Flask, jsonify, request, session, redirect, url_for, flash, send_from_directory
 from models.database import BaseDatos
 from flask_cors import CORS
 from passlib.hash import pbkdf2_sha256
 import re
 from bson.objectid import ObjectId
+from werkzeug.utils import secure_filename
+import time
 
 import os
 from dotenv import load_dotenv
@@ -23,6 +25,12 @@ CORS(app,
 is_production = os.environ.get("FLASK_ENV") == "production"
 app.config['SESSION_COOKIE_SAMESITE'] = 'None' if is_production else 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = is_production
+
+# Configuración de subida de imágenes
+UPLOAD_FOLDER = os.path.join('static', 'uploads')
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 db =BaseDatos()
 
@@ -538,6 +546,36 @@ def session_check():
                 "user": user
             })
     return jsonify({"logged": False}), 401
+@app.route('/api/admin/upload', methods=['POST'])
+def upload_file():
+    if session.get('rol') != 'admin':
+        return jsonify({"success": False, "message": "Acceso denegado"}), 403
+
+    if 'file' not in request.files:
+        return jsonify({"error": "No hay parte de archivo"}), 400
+
+    file = request.files['file']
+    if not file or file.filename is None or file.filename == '':
+        return jsonify({"error": "No se seleccionó ningún archivo"}), 400
+
+    filename = secure_filename(file.filename)
+        # Añadir timestamp para evitar sobrescribir archivos con el mismo nombre
+    name, ext = os.path.splitext(filename)
+    filename = f"{name}_{int(time.time())}{ext}"
+
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        # Devolvemos la ruta que el frontend usará para mostrar la imagen
+    return jsonify({
+        "success": True,
+        "url": f"/api/uploads/{filename}"
+    }), 201
+
+
+@app.route('/api/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 
 if __name__ ==  '__main__':

@@ -20,6 +20,30 @@ function Nueva_foto() {
         });
     };
 
+    const handleUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formDataUpload = new FormData();
+        formDataUpload.append("file", file);
+
+        try {
+            const res = await fetch("/api/admin/upload", {
+                method: "POST",
+                body: formDataUpload,
+                credentials: "include"
+            });
+            const data = await res.json();
+            if (data.success) {
+                setFormData({ ...formData, imagen: data.url });
+            } else {
+                alert(data.error || "Error al subir la imagen");
+            }
+        } catch {
+            alert("Error de conexión al subir la imagen");
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensaje("");
@@ -72,14 +96,40 @@ function Nueva_foto() {
 
                         <div className="form-group">
                             <label>URL Imagen:</label>
-                            <input
-                                type="text"
-                                name="imagen"
-                                value={formData.imagen}
-                                onChange={handleChange}
-                                placeholder="/img/galeria/ejemplo.jpg"
-                                required
-                            />
+                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                <input
+                                    type="text"
+                                    name="imagen"
+                                    value={formData.imagen}
+                                    onChange={handleChange}
+                                    placeholder="/images/ejemplo.jpg"
+                                    required
+                                />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleUpload}
+                                    style={{ display: "none" }}
+                                    id="file-upload"
+                                />
+                                <label htmlFor="file-upload" style={{
+                                    padding: "10px 15px",
+                                    background: "#1E6091",
+                                    color: "white",
+                                    borderRadius: "10px",
+                                    cursor: "pointer",
+                                    fontSize: "14px",
+                                    whiteSpace: "nowrap"
+                                }}>
+                                    📁 Subir
+                                </label>
+                            </div>
+                            {formData.imagen && (
+                                <div style={{ marginTop: "10px", textAlign: "center" }}>
+                                    <p style={{ fontSize: "12px", color: "#666" }}>Vista previa:</p>
+                                    <img src={formData.imagen} alt="Preview" style={{ maxWidth: "100%", maxHeight: "150px", borderRadius: "10px", border: "2px solid #52B788" }} />
+                                </div>
+                            )}
                         </div>
 
                         <div className="botones">
