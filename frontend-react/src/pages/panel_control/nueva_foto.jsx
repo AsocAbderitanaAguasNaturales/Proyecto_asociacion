@@ -113,7 +113,7 @@ function Nueva_foto() {
                                     id="file-upload"
                                 />
                                 <label htmlFor="file-upload" className="btn-upload">
-                                    📁 Subir imagen desde el ordenador
+                                    📁 Subir imagen
                                 </label>
                             </div>
                             {formData.imagen && (

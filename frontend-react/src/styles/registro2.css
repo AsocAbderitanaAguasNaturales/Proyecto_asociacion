@@ -58,10 +58,10 @@ h1 {
     margin-bottom: 5px;
   }
   
-  /* inputs, textareas y selects */
-  .form-group input, 
-  .form-group textarea, 
-  .form-group select {
+  /* inputs, textareas y selects específicos de la tarjeta de registro */
+  .card-registro .form-group input, 
+  .card-registro .form-group textarea, 
+  .card-registro .form-group select {
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
@@ -72,9 +72,9 @@ h1 {
     font-family: inherit;
   }
   
-  .form-group input:focus, 
-  .form-group textarea:focus, 
-  .form-group select:focus {
+  .card-registro .form-group input:focus, 
+  .card-registro .form-group textarea:focus, 
+  .card-registro .form-group select:focus {
     border-color: #52B788;
     box-shadow: 0 0 0 2px rgba(82,183,136,0.2);
   }
