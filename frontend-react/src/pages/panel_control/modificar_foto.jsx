@@ -116,7 +116,7 @@ function Modificar_foto() {
 
                         <div className="form-group">
                             <label>URL Imagen:</label>
-                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                            <div className="upload-container">
                                 <input
                                     type="text"
                                     name="imagen"
@@ -131,16 +131,8 @@ function Modificar_foto() {
                                     style={{ display: "none" }}
                                     id="file-upload"
                                 />
-                                <label htmlFor="file-upload" style={{
-                                    padding: "10px 15px",
-                                    background: "#1E6091",
-                                    color: "white",
-                                    borderRadius: "10px",
-                                    cursor: "pointer",
-                                    fontSize: "14px",
-                                    whiteSpace: "nowrap"
-                                }}>
-                                    📁 Subir
+                                <label htmlFor="file-upload" className="btn-upload">
+                                    📁 Subir imagen desde el ordenador
                                 </label>
                             </div>
                             {formData.imagen && (

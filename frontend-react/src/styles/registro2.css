@@ -58,16 +58,23 @@ h1 {
     margin-bottom: 5px;
   }
   
-  /* inputs */
-  .form-group input {
+  /* inputs, textareas y selects */
+  .form-group input, 
+  .form-group textarea, 
+  .form-group select {
+    width: 100%;
+    box-sizing: border-box;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #ced4da;
     outline: none;
     transition: 0.2s;
+    font-family: inherit;
   }
   
-  .form-group input:focus {
+  .form-group input:focus, 
+  .form-group textarea:focus, 
+  .form-group select:focus {
     border-color: #52B788;
     box-shadow: 0 0 0 2px rgba(82,183,136,0.2);
   }
@@ -171,4 +178,31 @@ h1 {
   #btn-volver:hover {
     background: #1E6091;
     color: white;
-  }
+  }
+
+  /* ===== CONTENEDOR DE SUBIDA DE IMÁGENES ===== */
+  .upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-upload {
+    padding: 10px 15px;
+    background: #1E6091;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    width: fit-content;
+    align-self: flex-end;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+
+  .btn-upload:hover {
+    background: #184E77;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+

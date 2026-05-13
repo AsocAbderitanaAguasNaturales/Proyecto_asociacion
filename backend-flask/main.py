@@ -7,6 +7,8 @@ import re
 from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
 import time
+import cloudinary
+import cloudinary.uploader
 
 import os
 from dotenv import load_dotenv
@@ -32,6 +34,13 @@ UPLOAD_FOLDER = os.path.join(basedir, 'static', 'uploads')
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Configuración de Cloudinary
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
+)
 
 db =BaseDatos()
 
@@ -559,25 +568,19 @@ def upload_file():
     if not file or file.filename is None or file.filename == '':
         return jsonify({"error": "No se seleccionó ningún archivo"}), 400
 
-    filename = secure_filename(file.filename)
-    name, ext = os.path.splitext(filename)
-    filename = f"{name}_{int(time.time())}{ext}"
+    try:
+        # Subir directamente a Cloudinary en una carpeta llamada 'asociacion'
+        upload_result = cloudinary.uploader.upload(file, folder="asociacion")
+        
+        # Devolvemos la URL segura de Cloudinary
+        return jsonify({
+            "success": True,
+            "url": upload_result['secure_url']
+        }), 201
+    except Exception as e:
+        print(f"Error Cloudinary: {str(e)}")
+        return jsonify({"error": f"Error al subir a Cloudinary: {str(e)}"}), 500
 
-    save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    print(f"DEBUG: Intentando guardar en: {save_path}")
-    
-    file.save(save_path)
-    
-    if os.path.exists(save_path):
-        print(f"DEBUG: ¡ÉXITO! El archivo existe en el disco. Tamaño: {os.path.getsize(save_path)} bytes")
-    else:
-        print(f"DEBUG: ¡ERROR! El archivo NO existe en el disco después de llamar a save()")
-
-    return jsonify({
-        "success": True,
-        "url": f"/api/uploads/{filename}",
-        "debug_path": save_path
-    }), 201
 
 
 @app.route('/api/uploads/<filename>')

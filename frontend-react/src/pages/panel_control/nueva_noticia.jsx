@@ -37,7 +37,6 @@ function Nueva_noticia() {
             const data = await res.json();
             if (data.success) {
                 setFormData({ ...formData, imagen: data.url });
-                alert("Imagen subida con éxito en:\n" + data.debug_path);
             } else {
                 alert(data.error || "Error al subir la imagen");
             }
@@ -103,14 +102,13 @@ function Nueva_noticia() {
                                 value={formData.descripcion}
                                 onChange={handleChange}
                                 rows="4"
-                                style={{ width: "100%", borderRadius: "10px", padding: "10px", border: "1px solid #ddd" }}
                                 required
                             ></textarea>
                         </div>
 
                         <div className="form-group">
                             <label>URL Imagen:</label>
-                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                            <div className="upload-container">
                                 <input
                                     type="text"
                                     name="imagen"
@@ -126,16 +124,8 @@ function Nueva_noticia() {
                                     style={{ display: "none" }}
                                     id="file-upload"
                                 />
-                                <label htmlFor="file-upload" style={{
-                                    padding: "10px 15px",
-                                    background: "#1E6091",
-                                    color: "white",
-                                    borderRadius: "10px",
-                                    cursor: "pointer",
-                                    fontSize: "14px",
-                                    whiteSpace: "nowrap"
-                                }}>
-                                    📁 Subir
+                                <label htmlFor="file-upload" className="btn-upload">
+                                    📁 Subir imagen desde el ordenador
                                 </label>
                             </div>
                             {formData.imagen && (
