@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/gestionar_miembros.css";
-
+// Función para gestionar los miembros 
 function Gestionar_miembros() {
     const [miembros, setMiembros] = useState([]);
     const [cargando, setCargando] = useState(true);
@@ -9,6 +9,7 @@ function Gestionar_miembros() {
     const [mensaje, setMensaje] = useState(null);
     const navigate = useNavigate();
 
+    // Cargar los miembros
     const cargarMiembros = () => {
         fetch("/api/miembros", {
             credentials: "include"
@@ -28,6 +29,7 @@ function Gestionar_miembros() {
         cargarMiembros();
     }, []);
 
+    // Eliminar miembros  
     const handleEliminar = (dni) => {
         fetch("/api/admin/miembros/" + dni, {
             method: "DELETE",

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/gestionar_comentarios.css";
-
+// Función para gestionar los comentarios 
 function GestionarComentarios() {
     const [comentarios, setComentarios] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [confirmarId, setConfirmarId] = useState(null);
     const [mensaje, setMensaje] = useState(null);
     const navigate = useNavigate();
-
+    // Cargar los comentarios
     const cargarComentarios = () => {
         fetch("/api/comentarios")
             .then(res => res.json())
@@ -22,7 +22,7 @@ function GestionarComentarios() {
     useEffect(() => {
         cargarComentarios();
     }, []);
-
+    // Función para eliminar los comentarios
     const handleEliminar = (id) => {
         fetch("/api/admin/comentarios/" + id, {
             method: "DELETE",

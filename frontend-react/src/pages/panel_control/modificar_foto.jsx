@@ -5,7 +5,7 @@ import "../../styles/registro2.css";
 function Modificar_foto() {
     const { id } = useParams();
     const navigate = useNavigate();
-
+    // Función para modificar las fotos   
     const [formData, setFormData] = useState({
         titulo: "",
         imagen: ""
@@ -14,7 +14,7 @@ function Modificar_foto() {
     const [mensaje, setMensaje] = useState("");
     const [exito, setExito] = useState(false);
     const [cargando, setCargando] = useState(true);
-
+    // Cargar fotos de la galería   
     useEffect(() => {
         fetch("/api/admin/galeria/" + id, {
             credentials: "include"
@@ -36,14 +36,14 @@ function Modificar_foto() {
                 setCargando(false);
             });
     }, [id]);
-
+    // Función para manejar el cambio de los datos 
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-
+    // Función para subir las fotos  
     const handleUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -67,12 +67,12 @@ function Modificar_foto() {
             alert("Error de conexión al subir la imagen");
         }
     };
-
+    // Función para guardar los cambios    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensaje("");
         setExito(false);
-
+        // Enviar los cambios al servidor 
         try {
             const res = await fetch("/api/admin/galeria/" + id, {
                 method: "PUT",
@@ -83,6 +83,7 @@ function Modificar_foto() {
 
             const data = await res.json();
 
+            // Comprobar si la respuesta es correcta
             if (!res.ok) {
                 setMensaje(data.error || "Error al actualizar la foto");
             } else {
@@ -93,7 +94,7 @@ function Modificar_foto() {
             setMensaje("Error al conectar con el servidor");
         }
     };
-
+    // Si está cargando, mostrar mensaje de carga
     if (cargando) return <p style={{ textAlign: "center", marginTop: "50px" }}>Cargando datos...</p>;
 
     return (

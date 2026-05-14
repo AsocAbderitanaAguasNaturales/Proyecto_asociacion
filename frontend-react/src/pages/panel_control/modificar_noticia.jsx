@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/registro2.css";
 
+// Función para modificar las noticias   
 function Modificar_noticia() {
     const { id } = useParams();
     const navigate = useNavigate();
-
+    // Datos de la noticia
     const [formData, setFormData] = useState({
         titulo: "",
         descripcion: "",
@@ -16,6 +17,7 @@ function Modificar_noticia() {
     const [exito, setExito] = useState(false);
     const [cargando, setCargando] = useState(true);
 
+    // Cargar noticias de la base de datos
     useEffect(() => {
         fetch("/api/admin/noticias/" + id, {
             credentials: "include"
@@ -38,21 +40,21 @@ function Modificar_noticia() {
                 setCargando(false);
             });
     }, [id]);
-
+    // Función para manejar el cambio de los datos
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-
+    // Función para subir las imágenes
     const handleUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         const formDataUpload = new FormData();
         formDataUpload.append("file", file);
-
+        // Enviar la imagen al servidor
         try {
             const res = await fetch("/api/admin/upload", {
                 method: "POST",
@@ -74,7 +76,7 @@ function Modificar_noticia() {
         e.preventDefault();
         setMensaje("");
         setExito(false);
-
+        // Enviar la noticia al servidor   
         try {
             const res = await fetch("/api/admin/noticias/" + id, {
                 method: "PUT",
@@ -82,7 +84,7 @@ function Modificar_noticia() {
                 credentials: "include",
                 body: JSON.stringify(formData)
             });
-
+            // Comprobar si la respuesta es correcta
             const data = await res.json();
 
             if (!res.ok) {
@@ -95,7 +97,7 @@ function Modificar_noticia() {
             setMensaje("Error al conectar con el servidor");
         }
     };
-
+    // Si está cargando, mostrar mensaje de carga
     if (cargando) return <p style={{ textAlign: "center", marginTop: "50px" }}>Cargando datos...</p>;
 
     return (

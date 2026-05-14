@@ -1,4 +1,5 @@
 {
+    "_comment": "Configuración para que el editor encuentre las librerías en el entorno virtual (venv)",
     "venvPath": ".",
     "venv": "venv",
     "pythonPath": "./venv/Scripts/python.exe"

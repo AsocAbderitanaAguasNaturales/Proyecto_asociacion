@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/gestionar_noticias.css";
-
+// Función para gestionar las noticias 
 function Gestionar_noticias() {
     const [noticias, setNoticias] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [confirmarId, setConfirmarId] = useState(null);
     const [mensaje, setMensaje] = useState(null);
     const navigate = useNavigate();
-
+    // Cargar las noticias 
     const cargarNoticias = () => {
         fetch("/api/noticias")
             .then(res => res.json())
@@ -22,7 +22,7 @@ function Gestionar_noticias() {
     useEffect(() => {
         cargarNoticias();
     }, []);
-
+    // Eliminar noticias 
     const handleEliminar = (id) => {
         fetch("/api/admin/noticias/" + id, {
             method: "DELETE",
@@ -73,8 +73,8 @@ function Gestionar_noticias() {
                                 <tr key={n.id}>
                                     <td>{n.titulo}</td>
                                     <td className="gn-descripcion-celda">
-                                        {n.descripcion.length > 50 
-                                            ? n.descripcion.substring(0, 50) + "..." 
+                                        {n.descripcion.length > 50
+                                            ? n.descripcion.substring(0, 50) + "..."
                                             : n.descripcion}
                                     </td>
                                     <td>

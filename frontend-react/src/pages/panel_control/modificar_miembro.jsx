@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/registro2.css";
-
+// Función para modificar los datos de un miembro
 function Modificar_miembro() {
     const { dni } = useParams();
     const navigate = useNavigate();
@@ -33,14 +33,14 @@ function Modificar_miembro() {
                 setCargando(false);
             });
     }, [dni, navigate]);
-
+    // Función para manejar el cambio de los datos  
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-
+    // Función para guardar los cambios   
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensaje("");
@@ -60,7 +60,7 @@ function Modificar_miembro() {
             setMensaje("Introduce un email válido");
             return;
         }
-
+        // Enviar los cambios al servidor   
         const payload = { ...formData };
         if (password) payload.password = password;
 

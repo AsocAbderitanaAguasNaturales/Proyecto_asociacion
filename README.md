@@ -16,10 +16,7 @@ Este proyecto es una plataforma integral para la gestión de una asociación. Pe
 /Proyecto_asociacion
 ├─ backend-flask/                # Carpeta del servidor (Python/Flask)
 │  ├─ models/                    # Lógica de datos y modelos
-│  │  ├─ admin.json              # Datos iniciales admin
-│  │  ├─ database.py             # Clase BaseDatos (MongoDB)
-│  │  ├─ galeria.json            # Datos iniciales galería
-│  │  └─ noticas.json            # Datos iniciales noticias
+│  │  └─ database.py             # Clase BaseDatos (MongoDB)
 │  ├─ static/uploads/            # Almacenamiento local temporal
 │  ├─ .env                       # Variables de entorno (Configuración)
 │  ├─ main.py                    # Servidor Flask (Rutas y Lógica)

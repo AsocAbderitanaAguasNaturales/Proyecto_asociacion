@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../styles/admin.css';
 
+// Panel de administrador
 function Admin() {
     const [verificado, setVerificado] = useState(false);
     const navigate = useNavigate();
 
+    // Comprobar si el usuario está autenticado y tiene rol de administrador
     useEffect(() => {
         fetch("/api/session", {
             credentials: "include"
@@ -21,6 +23,7 @@ function Admin() {
             .catch(() => navigate("/login"));
     }, [navigate]);
 
+    // Función para cerrar sesión
     const handleLogout = () => {
         fetch("/api/logout", {
             method: "POST",
@@ -30,10 +33,12 @@ function Admin() {
             .catch(() => navigate("/login"));
     };
 
+    // Si no está verificado, mostrar mensaje de carga
     if (!verificado) {
         return <p>Cargando panel de administrador...</p>;
     }
 
+    // Panel de administrador
     return (
         <>
             <h1>Panel de administrador</h1>

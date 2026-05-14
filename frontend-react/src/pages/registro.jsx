@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "../styles/registro2.css"
 
+// Componente de la página de Registro
 function Registro() {
 
     const [formData, setFormData] = useState({
@@ -12,9 +13,10 @@ function Registro() {
         telefono: "",
         email: ""
     })
-
+    // Hook para gestionar el mensaje
     const [mensaje, setMensaje] = useState("")
 
+    // Función para manejar el cambio de los datos del formulario
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -22,9 +24,10 @@ function Registro() {
         })
     }
 
+    // Función para manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        // Expresión regular para validar la contraseña
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/
 
         if (!passwordRegex.test(formData.password)) {
@@ -52,7 +55,7 @@ function Registro() {
 
             try {
                 data = await res.json()
-            } catch  {
+            } catch {
                 setMensaje("Respuesta inválida del servidor")
                 return
             }
@@ -63,11 +66,12 @@ function Registro() {
                 setMensaje(data.mensaje)
             }
 
-        } catch  {
+        } catch {
             setMensaje("Error al conectar con el servidor")
         }
     }
 
+    // Función para manejar el reseteo del formulario
     const handleReset = () => {
         setFormData({
             username: "",
@@ -125,16 +129,16 @@ function Registro() {
                         </div>
 
                         <div className="botones">
-                            <input type="submit" value="Registrarse"/>
-                            <input type="reset" value="Borrar" onClick={handleReset}/>
+                            <input type="submit" value="Registrarse" />
+                            <input type="reset" value="Borrar" onClick={handleReset} />
                         </div>
 
                     </form>
 
                     {mensaje && <p id="mensaje">{mensaje}</p>}
-                        <a href="./login">Volver</a>
+                    <a href="./login">Volver</a>
                 </div>
-          
+
             </main>
         </>
     )

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "../styles/comentarios.css";
 
+// Función para mostrar los comentarios
 function Comentarios() {
+    // Comentarios y estado de carga
     const [comentarios, setComentarios] = useState([]);
     const [cargando, setCargando] = useState(true);
 

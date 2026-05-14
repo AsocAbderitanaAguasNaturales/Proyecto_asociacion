@@ -126,12 +126,14 @@ function App() {
             </RutaProtegida>
           } />
 
+          {/* Ruta Crear foto */}
           <Route path="/admin/gestionar_galeria/nuevo" element={
             <RutaProtegida rolRequerido="admin">
               <Nueva_foto />
             </RutaProtegida>
           } />
 
+          {/* Ruta Modificar foto */}
           <Route path="/admin/gestionar_galeria/:id" element={
             <RutaProtegida rolRequerido="admin">
               <Modificar_foto />
@@ -145,18 +147,21 @@ function App() {
             </RutaProtegida>
           } />
 
+          {/* Ruta Crear noticia */}
           <Route path="/admin/gestionar_noticias/nuevo" element={
             <RutaProtegida rolRequerido="admin">
               <Nueva_noticia />
             </RutaProtegida>
           } />
 
+          {/* Ruta Modificar noticia */}
           <Route path="/admin/gestionar_noticias/:id" element={
             <RutaProtegida rolRequerido="admin">
               <Modificar_noticia />
             </RutaProtegida>
           } />
 
+          {/* Gestionar comentarios */}
           <Route path="/admin/gestionar_comentarios" element={
             <RutaProtegida rolRequerido="admin">
               <GestionarComentarios />

@@ -19,3 +19,4 @@ export default defineConfig({
     },
   },
 })
+// en la linea 7-17 se configura el proxy para que el servidor pueda acceder a la API

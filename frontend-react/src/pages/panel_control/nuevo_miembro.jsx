@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/registro2.css";
 
+// Función para crear un nuevo miembro
 function NuevoMiembro() {
     const navigate = useNavigate();
 
+    // Datos del nuevo miembro
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -16,9 +18,11 @@ function NuevoMiembro() {
         rol: "miembro"
     });
 
+    // Mensajes
     const [mensaje, setMensaje] = useState("");
     const [exito, setExito] = useState(false);
 
+    // Función para manejar el cambio de los datos
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -26,23 +30,25 @@ function NuevoMiembro() {
         });
     };
 
+    // Función para enviar el nuevo miembro al servidor
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensaje("");
         setExito(false);
 
+        // Expresiones regulares para validar los datos
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/;
         if (!passwordRegex.test(formData.password)) {
             setMensaje("La contraseña debe tener entre 8 y 15 caracteres, incluir mayúsculas, minúsculas y números");
             return;
         }
-
+        // Comprobar si el email es válido
         const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
         if (!emailRegex.test(formData.email)) {
             setMensaje("Introduce un email válido");
             return;
         }
-
+        // Enviar el nuevo miembro al servidor
         try {
             const res = await fetch("/api/admin/miembros/nuevo", {
                 method: "POST",
@@ -79,7 +85,7 @@ function NuevoMiembro() {
             setMensaje("Error al conectar con el servidor");
         }
     };
-
+    // Función para resetear el formulario
     const handleReset = () => {
         setFormData({
             username: "",

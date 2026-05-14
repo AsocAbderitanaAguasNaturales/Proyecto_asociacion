@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/gestionar_galeria.css";
 
+// Función para gestionar la galería
 function Gestionar_galeria() {
     const [fotos, setFotos] = useState([]);
     const [cargando, setCargando] = useState(true);
@@ -9,6 +10,7 @@ function Gestionar_galeria() {
     const [mensaje, setMensaje] = useState(null);
     const navigate = useNavigate();
 
+    // Cargar fotos de la galería   
     const cargarFotos = () => {
         fetch("/api/galeria")
             .then(res => res.json())
@@ -23,6 +25,7 @@ function Gestionar_galeria() {
         cargarFotos();
     }, []);
 
+    // Función para eliminar las fotos 
     const handleEliminar = (id) => {
         fetch("/api/admin/galeria/" + id, {
             method: "DELETE",

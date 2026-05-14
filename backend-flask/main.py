@@ -17,13 +17,15 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Configuración de sesión
 app.secret_key = os.environ.get("SECRET_KEY", "clave_super_secreta")
 
+# Configuración de CORS
 frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 CORS(app,
      supports_credentials=True,
      origins=[frontend_url, "http://localhost:5173"])
-
+# Configuración de cookies
 is_production = os.environ.get("FLASK_ENV") == "production"
 app.config['SESSION_COOKIE_SAMESITE'] = 'None' if is_production else 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = is_production
@@ -50,11 +52,11 @@ noticias_col = db.obtener_colecciones('Noticias')
 miembros_col = db.obtener_colecciones('Miembros')
 galeria_col = db.obtener_colecciones('Galeria')
 comentarios_col = db.obtener_colecciones('Comentarios')
-
+# Ruta de prueba
 @app.route('/')
 def home():
     return "Servidor funcionando"
-
+# Ruta de API para obtener todas las noticias
 @app.route('/api/noticias')
 def get_noticias():
     data = list(noticias_col.find())
@@ -69,7 +71,7 @@ def get_noticias():
         })
 
     return jsonify(noticias)
-
+# Ruta de API para obtener todas las fotos de la galería
 @app.route('/api/galeria')
 def get_fotos():
     
@@ -86,7 +88,7 @@ def get_fotos():
     return jsonify(galeria)
 
     
-
+# Ruta de API para el inicio de sesión
 @app.route('/api/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -117,7 +119,7 @@ def login():
     })
             
 
-
+# Ruta de API para el registro de usuarios
 @app.route('/api/registro', methods=['POST'])
 def registro():
     
@@ -192,7 +194,7 @@ def registro():
 
 
 
-
+ # Ruta de API para cerrar sesión
 @app.route('/api/logout', methods=['POST'])
 def logout():
     session.clear()
@@ -218,6 +220,7 @@ def guardar_comentario():
     return jsonify({"success": True, "message": "Comentario guardado correctamente"}), 201
 
 
+# Ruta de API para obtener todos los comentarios
 @app.route('/api/comentarios', methods=['GET'])
 def obtener_comentarios():
     datos = list(comentarios_col.find())
@@ -231,6 +234,7 @@ def obtener_comentarios():
     return jsonify(comentarios)
 
 
+# Ruta de API para obtener todos los miembros
 @app.route('/api/miembros', methods=['GET'])
 def obtener_miembros():
     if session.get('rol') != 'admin':
@@ -238,7 +242,7 @@ def obtener_miembros():
     datos = list(miembros_col.find({}, {'_id': 0, 'password': 0}))
     return jsonify(datos)
 
-
+# Ruta de API para crear un nuevo miembro (admin)
 @app.route('/api/admin/miembros/nuevo', methods=['POST'])
 def crear_miembro_admin():
     if session.get('rol') != 'admin':
@@ -301,6 +305,7 @@ def crear_miembro_admin():
 
 
 
+# Ruta de API para obtener un miembro por DNI
 @app.route('/api/admin/miembros/<dni>', methods=['GET'])
 def obtener_miembro(dni):
     if session.get('rol') != 'admin':
@@ -310,7 +315,7 @@ def obtener_miembro(dni):
         return jsonify({"success": False, "message": "Miembro no encontrado"}), 404
     return jsonify(miembro)
 
-
+# Ruta de API para modificar un miembro (admin)
 @app.route('/api/admin/miembros/<dni>', methods=['PUT'])
 def modificar_miembro(dni):
     if session.get('rol') != 'admin':
@@ -355,7 +360,7 @@ def modificar_miembro(dni):
     miembros_col.update_one({'dni': dni.upper()}, {'$set': actualizacion})
     return jsonify({"mensaje": "Miembro actualizado correctamente"})
 
-
+# Ruta de API para eliminar un miembro (admin)
 @app.route('/api/admin/miembros/<dni>', methods=['DELETE'])
 def eliminar_miembro(dni):
     if session.get('rol') != 'admin':
@@ -365,7 +370,7 @@ def eliminar_miembro(dni):
         return jsonify({"success": False, "message": "Miembro no encontrado"}), 404
     return jsonify({"success": True, "message": "Miembro eliminado correctamente"})
 
-
+# Ruta de API para crear una nueva foto de la galería (admin)
 @app.route('/api/admin/galeria/nuevo', methods=['POST'])
 def crear_foto_admin():
     if session.get('rol') != 'admin':
@@ -387,7 +392,7 @@ def crear_foto_admin():
     })
     return jsonify({"success": True, "mensaje": "Foto añadida correctamente"}), 201
 
-
+# Ruta de API para obtener una foto de la galería (admin)
 @app.route('/api/admin/galeria/<id>', methods=['GET'])
 def obtener_foto(id):
     if session.get('rol') != 'admin':
@@ -404,7 +409,7 @@ def obtener_foto(id):
     except:
         return jsonify({"success": False, "message": "ID inválido"}), 400
 
-
+# Ruta de API para modificar una foto de la galería (admin)
 @app.route('/api/admin/galeria/<id>', methods=['PUT'])
 def modificar_foto(id):
     if session.get('rol') != 'admin':
@@ -431,7 +436,7 @@ def modificar_foto(id):
     except:
         return jsonify({"success": False, "message": "ID inválido"}), 400
 
-
+# Ruta de API para eliminar una foto de la galería (admin)
 @app.route('/api/admin/galeria/<id>', methods=['DELETE'])
 def eliminar_foto(id):
     if session.get('rol') != 'admin':
@@ -444,7 +449,7 @@ def eliminar_foto(id):
     except:
         return jsonify({"success": False, "message": "ID inválido"}), 400
 
-
+# Ruta de API para crear una nueva noticia (admin)
 @app.route('/api/admin/noticias/nuevo', methods=['POST'])
 def crear_noticia_admin():
     if session.get('rol') != 'admin':
@@ -469,6 +474,7 @@ def crear_noticia_admin():
     return jsonify({"success": True, "mensaje": "Noticia añadida correctamente"}), 201
 
 
+# Ruta de API para obtener una noticia (admin)
 @app.route('/api/admin/noticias/<id>', methods=['GET'])
 def obtener_noticia(id):
     if session.get('rol') != 'admin':
@@ -486,7 +492,7 @@ def obtener_noticia(id):
     except:
         return jsonify({"success": False, "message": "ID inválido"}), 400
 
-
+# Ruta de API para modificar una noticia (admin)
 @app.route('/api/admin/noticias/<id>', methods=['PUT'])
 def modificar_noticia(id):
     if session.get('rol') != 'admin':
@@ -515,7 +521,7 @@ def modificar_noticia(id):
     except:
         return jsonify({"success": False, "message": "ID inválido"}), 400
 
-
+# Ruta de API para eliminar una noticia (admin)
 @app.route('/api/admin/noticias/<id>', methods=['DELETE'])
 def eliminar_noticia(id):
     if session.get('rol') != 'admin':
@@ -528,7 +534,7 @@ def eliminar_noticia(id):
     except:
         return jsonify({"success": False, "message": "ID inválido"}), 400
 
-
+# Ruta de API para eliminar un comentario (admin)
 @app.route('/api/admin/comentarios/<id>', methods=['DELETE'])
 def eliminar_comentario(id):
     if session.get('rol') != 'admin':
@@ -541,10 +547,8 @@ def eliminar_comentario(id):
     except:
         return jsonify({"success": False, "message": "ID inválido"}), 400
 
-
-
+# Ruta de API para verificar la sesión
 @app.route('/api/session', methods=['GET'])
-
 def session_check():
     if 'username' in session:
         user = miembros_col.find_one({'username': session['username']}, {'_id': 0, 'password': 0})
@@ -556,6 +560,9 @@ def session_check():
                 "user": user
             })
     return jsonify({"logged": False}), 401
+
+
+# Ruta de API para subir archivos (admin)
 @app.route('/api/admin/upload', methods=['POST'])
 def upload_file():
     if session.get('rol') != 'admin':
@@ -581,14 +588,14 @@ def upload_file():
         print(f"Error Cloudinary: {str(e)}")
         return jsonify({"error": f"Error al subir a Cloudinary: {str(e)}"}), 500
 
-
-
+ 
+# Ruta de API para servir archivos subidos
 @app.route('/api/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
-
+ # Ejecución del servidor Flask
 if __name__ ==  '__main__':
     BaseDatos.inicializar_colecciones(BaseDatos())
     BaseDatos.insertar_admin(BaseDatos())

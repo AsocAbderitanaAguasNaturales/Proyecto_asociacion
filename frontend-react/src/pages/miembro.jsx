@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/miembro.css";
+// Importa el Hook useEffect desde React 
+
+// Componente de la página de Miembro
 function Miembro() {
     const [datos, setDatos] = useState(null);
     const [comentario, setComentario] = useState("");
     const [mensajeComentario, setMensajeComentario] = useState(null);
     const navigate = useNavigate();
+    // Importa el Hook useState desde React
+    // Hook que se ejecuta cuando el componente se monta o cuando cambia navigate
 
     useEffect(() => {
         fetch("/api/session", {
@@ -22,6 +27,7 @@ function Miembro() {
             .catch(() => navigate("/login"));
     }, [navigate]);
 
+    // Maneja el cierre de sesión
     const handleLogout = () => {
         fetch("/api/logout", {
             method: "POST",
@@ -31,6 +37,7 @@ function Miembro() {
             .catch(() => navigate("/login"));
     };
 
+    // Maneja el envío de comentarios
     const handleComentario = (e) => {
         e.preventDefault();
 
@@ -56,11 +63,11 @@ function Miembro() {
             })
             .catch(() => setMensajeComentario({ tipo: "error", texto: "Error de conexión." }));
     };
-
+    // Si no hay datos, muestra un mensaje de carga
     if (!datos) {
         return <p>Cargando área de miembro...</p>;
     }
-
+    // Renderiza el área de miembro
     return (
         <>
             <h1>Area de miembros</h1>

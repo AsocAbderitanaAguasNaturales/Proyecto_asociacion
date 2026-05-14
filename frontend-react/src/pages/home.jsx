@@ -1,6 +1,7 @@
 import Carrousel from '../components/carrousel'
 import '../styles/index2.css'
 
+// Página principal
 function Home() {
   return (
     <>

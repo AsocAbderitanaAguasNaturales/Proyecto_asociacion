@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/registro2.css";
-
+// Función para crear una nueva foto
 function Nueva_foto() {
     const navigate = useNavigate();
 
+    // Datos de la foto
     const [formData, setFormData] = useState({
         titulo: "",
         imagen: ""
     });
 
+    // Mensajes
     const [mensaje, setMensaje] = useState("");
     const [exito, setExito] = useState(false);
 
+    // Función para manejar el cambio de los datos
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -20,19 +23,23 @@ function Nueva_foto() {
         });
     };
 
+    // Función para subir las imágenes    
     const handleUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
+        // Datos para subir la imagen
         const formDataUpload = new FormData();
         formDataUpload.append("file", file);
 
+        // Enviar la imagen al servidor
         try {
             const res = await fetch("/api/admin/upload", {
                 method: "POST",
                 body: formDataUpload,
                 credentials: "include"
             });
+
             const data = await res.json();
             if (data.success) {
                 setFormData({ ...formData, imagen: data.url });
@@ -44,6 +51,7 @@ function Nueva_foto() {
         }
     };
 
+    // Función para enviar la foto al servidor
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensaje("");
@@ -53,7 +61,7 @@ function Nueva_foto() {
             setMensaje("Todos los campos son obligatorios");
             return;
         }
-
+        // Envía los datos al servidor
         try {
             const res = await fetch("/api/admin/galeria/nuevo", {
                 method: "POST",
