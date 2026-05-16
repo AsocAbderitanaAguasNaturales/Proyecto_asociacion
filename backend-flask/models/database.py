@@ -1,8 +1,11 @@
+from bson import ObjectId
 from pymongo import MongoClient 
 from passlib.hash import pbkdf2_sha256
 import os
 from dotenv import load_dotenv
 
+
+# Clase BaseDatos
 class BaseDatos:
     def __init__(self):
         try:
@@ -86,7 +89,23 @@ class BaseDatos:
     def insertar_noticia(self,noticia):
         self.db['Noticias'].insert_one(noticia)
 
+    def lista_comentarios(self, Comentarios):
+        return list(Comentarios.find())
 
+    def insertar_comentario(self, comentario):
+        self.db['Comentarios'].insert_one(comentario)
+
+    def eliminar_comentario(self, comentario_id):
+        self.db['Comentarios'].delete_one({"_id": ObjectId(comentario_id)})
+
+    def lista_galeria(self,Galeria):
+        return list(Galeria.find())
+    
+    def insertar_galeria(self,galeria):
+        self.db['Galeria'].insert_one(galeria)
+
+    def eliminar_galeria(self, galeria_id):
+        self.db['Galeria'].delete_one({"_id": ObjectId(galeria_id)})
 
     # Nos devuelve la coleccion (tabla) cuyo nombre le especifiquemos
     def obtener_colecciones(self,nombre):
