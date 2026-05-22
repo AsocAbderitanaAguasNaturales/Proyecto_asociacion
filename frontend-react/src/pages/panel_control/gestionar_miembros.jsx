@@ -11,7 +11,7 @@ function Gestionar_miembros() {
 
     // Cargar los miembros
     const cargarMiembros = () => {
-        fetch("/api/miembros", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/miembros`, {
             credentials: "include"
         })
             .then(res => {
@@ -31,7 +31,7 @@ function Gestionar_miembros() {
 
     // Eliminar miembros  
     const handleEliminar = (dni) => {
-        fetch("/api/admin/miembros/" + dni, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/admin/miembros/` + dni, {
             method: "DELETE",
             credentials: "include"
         })
