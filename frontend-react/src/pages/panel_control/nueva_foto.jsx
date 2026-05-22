@@ -34,7 +34,7 @@ function Nueva_foto() {
 
         // Enviar la imagen al servidor
         try {
-            const res = await fetch("/api/admin/upload", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/upload`, {
                 method: "POST",
                 body: formDataUpload,
                 credentials: "include"
@@ -63,7 +63,7 @@ function Nueva_foto() {
         }
         // Envía los datos al servidor
         try {
-            const res = await fetch("/api/admin/galeria/nuevo", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/galeria/nuevo`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
