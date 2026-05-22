@@ -36,7 +36,7 @@ function Nueva_noticia() {
 
         // Enviar la imagen al servidor
         try {
-            const res = await fetch("/api/admin/upload", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/upload`, {
                 method: "POST",
                 body: formDataUpload,
                 credentials: "include"
@@ -67,7 +67,7 @@ function Nueva_noticia() {
 
         // Enviar la noticia al servidor
         try {
-            const res = await fetch("/api/admin/noticias/nuevo", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/noticias/nuevo`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
