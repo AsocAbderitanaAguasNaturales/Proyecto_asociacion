@@ -10,7 +10,7 @@ function Gestionar_noticias() {
     const navigate = useNavigate();
     // Cargar las noticias 
     const cargarNoticias = () => {
-        fetch("/api/noticias")
+        fetch(`${import.meta.env.VITE_API_URL}/api/noticias`)
             .then(res => res.json())
             .then(data => {
                 setNoticias(data);
@@ -24,7 +24,7 @@ function Gestionar_noticias() {
     }, []);
     // Eliminar noticias 
     const handleEliminar = (id) => {
-        fetch("/api/admin/noticias/" + id, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/admin/noticias/` + id, {
             method: "DELETE",
             credentials: "include"
         })
