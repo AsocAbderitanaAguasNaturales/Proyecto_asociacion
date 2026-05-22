@@ -11,7 +11,7 @@ function Noticias() {
 
   // Hook que se ejecuta cuando el componente se monta o cuando cambia navigate
   useEffect(() => {
-    fetch("/api/noticias")
+    fetch(`${import.meta.env.VITE_API_URL}/api/noticias`)
       .then(res => res.json())
       .then(data => {
         setNoticias(data);
