@@ -11,7 +11,7 @@ function Login() {
   const navigate = useNavigate();
   // Comprobar si el usuario está autenticado
   useEffect(() => {
-    fetch("/api/session", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/session`, {
       credentials: "include"
     })
       .then(res => res.json())
