@@ -29,7 +29,7 @@ function Miembro() {
 
     // Maneja el cierre de sesión
     const handleLogout = () => {
-        fetch("/api/logout", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/logout`, {
             method: "POST",
             credentials: "include"
         })
@@ -46,7 +46,7 @@ function Miembro() {
             return;
         }
 
-        fetch("/api/comentarios", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/comentarios`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
