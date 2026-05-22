@@ -19,7 +19,7 @@ function Modificar_noticia() {
 
     // Cargar noticias de la base de datos
     useEffect(() => {
-        fetch("/api/admin/noticias/" + id, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/admin/noticias/` + id, {
             credentials: "include"
         })
             .then(res => res.json())
@@ -56,7 +56,7 @@ function Modificar_noticia() {
         formDataUpload.append("file", file);
         // Enviar la imagen al servidor
         try {
-            const res = await fetch("/api/admin/upload", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/upload`, {
                 method: "POST",
                 body: formDataUpload,
                 credentials: "include"
@@ -78,7 +78,7 @@ function Modificar_noticia() {
         setExito(false);
         // Enviar la noticia al servidor   
         try {
-            const res = await fetch("/api/admin/noticias/" + id, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/noticias/` + id, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
