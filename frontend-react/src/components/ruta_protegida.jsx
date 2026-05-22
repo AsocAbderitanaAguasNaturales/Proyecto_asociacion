@@ -5,7 +5,7 @@ function RutaProtegida({ children, rolRequerido }) {
   const [auth, setAuth] = useState(null);
 
   useEffect(() => {
-    fetch("/api/session", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/session`, {
       credentials: "include"
     })
       .then(res => res.json())
