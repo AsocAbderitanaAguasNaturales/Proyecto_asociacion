@@ -21,4 +21,4 @@ python-dotenv==1.2.2
 pytz==2026.2
 sentinels==1.1.1
 Werkzeug==3.1.5
-cloudinary==3.52.0
+cloudinary
