@@ -17,8 +17,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-os.environ.get("MONGO_URL")
-
 # Configuración de sesión
 app.secret_key = os.environ.get("SECRET_KEY", "clave_super_secreta")
 
