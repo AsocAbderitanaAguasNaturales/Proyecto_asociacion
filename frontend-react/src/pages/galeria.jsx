@@ -9,7 +9,7 @@ function Galeria() {
 
   // Cargar fotos de la base de datos
   useEffect(() => {
-    fetch("/api/galeria")
+    fetch(`${import.meta.env.VITE_API_URL}/api/galeria`)
       .then(res => res.json())
       .then(data => {
         setFotos(data);
