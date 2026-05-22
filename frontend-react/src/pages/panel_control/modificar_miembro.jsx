@@ -14,7 +14,7 @@ function Modificar_miembro() {
 
     // Cargar datos del miembro al montar
     useEffect(() => {
-        fetch("/api/admin/miembros/" + dni, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/admin/miembros/` + dni, {
             credentials: "include"
         })
             .then(res => {
@@ -65,7 +65,7 @@ function Modificar_miembro() {
         if (password) payload.password = password;
 
         try {
-            const res = await fetch("/api/admin/miembros/" + dni, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/miembros/` + dni, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
