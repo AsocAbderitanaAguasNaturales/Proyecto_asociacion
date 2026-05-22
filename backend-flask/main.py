@@ -15,7 +15,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 app = Flask(__name__)
+# Configurar ProxyFix para que Flask confíe en los headers de HTTPS enviados por Render
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+
 
 # Configuración de sesión
 app.secret_key = os.environ.get("SECRET_KEY", "clave_super_secreta")
@@ -26,9 +31,19 @@ CORS(app,
      supports_credentials=True,
      origins=[frontend_url, "http://localhost:5173"])
 # Configuración de cookies
-is_production = os.environ.get("FLASK_ENV") == "production"
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+is_production = os.environ.get("FLASK_ENV") == "production" or os.environ.get("RENDER") is not None
+
 app.config['SESSION_COOKIE_SAMESITE'] = 'None' if is_production else 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = is_production
+
+# Evitar caché en respuestas API (previene loops de login causados por CDN)
+@app.after_request
+def add_header(response):
+    if request.path.startswith('/api/'):
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    return response
 
 # Configuración de subida de imágenes
 basedir = os.path.abspath(os.path.dirname(__file__))
