@@ -13,7 +13,7 @@ function Miembro() {
     // Hook que se ejecuta cuando el componente se monta o cuando cambia navigate
 
     useEffect(() => {
-        fetch("/api/session", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/session`, {
             credentials: "include"
         })
             .then(res => res.json())
