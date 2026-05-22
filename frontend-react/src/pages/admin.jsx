@@ -9,7 +9,7 @@ function Admin() {
 
     // Comprobar si el usuario está autenticado y tiene rol de administrador
     useEffect(() => {
-        fetch("/api/session", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/session`, {
             credentials: "include"
         })
             .then(res => res.json())
@@ -25,7 +25,7 @@ function Admin() {
 
     // Función para cerrar sesión
     const handleLogout = () => {
-        fetch("/api/logout", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/logout`, {
             method: "POST",
             credentials: "include"
         })
