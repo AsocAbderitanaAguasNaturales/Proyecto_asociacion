@@ -16,7 +16,7 @@ function Modificar_foto() {
     const [cargando, setCargando] = useState(true);
     // Cargar fotos de la galería   
     useEffect(() => {
-        fetch("/api/admin/galeria/" + id, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/admin/galeria/` + id, {
             credentials: "include"
         })
             .then(res => res.json())
@@ -52,7 +52,7 @@ function Modificar_foto() {
         formDataUpload.append("file", file);
 
         try {
-            const res = await fetch("/api/admin/upload", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/upload`, {
                 method: "POST",
                 body: formDataUpload,
                 credentials: "include"
@@ -74,7 +74,7 @@ function Modificar_foto() {
         setExito(false);
         // Enviar los cambios al servidor 
         try {
-            const res = await fetch("/api/admin/galeria/" + id, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/galeria/` + id, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
